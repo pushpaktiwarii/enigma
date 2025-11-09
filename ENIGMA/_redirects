@@ -1,0 +1,17 @@
+# Netlify redirects file
+# This ensures all routes work correctly
+
+# Redirect root to index.html
+/  /index.html  200
+
+# Handle all HTML pages
+/about  /about.html  200
+/events  /events.html  200
+/gallery  /gallery.html  200
+/sponsors  /sponsors.html  200
+/registration  /registration.html  200
+/event-detail  /event-detail.html  200
+
+# Fallback for any other routes
+/*  /index.html  200
+
