@@ -2,37 +2,6 @@
    Advanced Animations & Effects
    ============================================ */
 
-/* Custom Cursor */
-.cursor-dot,
-.cursor-outline {
-    position: fixed;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: var(--z-cursor);
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s ease-out;
-}
-
-.cursor-dot {
-    width: 8px;
-    height: 8px;
-    background-color: var(--color-primary);
-    z-index: calc(var(--z-cursor) + 1);
-}
-
-.cursor-outline {
-    width: 30px;
-    height: 30px;
-    border: 2px solid var(--color-primary);
-    transition: transform 0.15s ease-out, width 0.15s ease-out, height 0.15s ease-out;
-}
-
-.cursor-outline.hover {
-    width: 60px;
-    height: 60px;
-    mix-blend-mode: difference;
-}
-
 /* Parallax Effect */
 .parallax-element {
     will-change: transform;
@@ -157,11 +126,6 @@
 
 /* Mobile Optimization - Disable Complex Animations */
 @media (max-width: 768px) {
-    .cursor-dot,
-    .cursor-outline {
-        display: none;
-    }
-
     .parallax-element {
         transform: none !important;
     }

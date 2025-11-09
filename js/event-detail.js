@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
             name: 'Open Mic',
             type: 'Solo (Offline)',
             category: 'Literary',
-            fee: '₹400',
+            fee: '₹300 for two event participation',
             rules: [
                 'Participants must register before the deadline.',
                 'Time limit: 5 minutes per performance.',

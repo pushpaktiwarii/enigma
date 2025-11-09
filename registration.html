@@ -67,22 +67,43 @@
                     
                     <!-- ENIGMA Registration Form -->
                     <div class="registration-form-container fade-in">
-                        <iframe 
-                            src="https://reg.icampuserp.in/Form1015.aspx" 
-                            width="100%" 
-                            height="1200" 
-                            frameborder="0" 
-                            marginheight="0" 
-                            marginwidth="0"
-                            title="ENIGMA XIII Registration Form"
-                            loading="lazy"
-                            style="border: none; border-radius: var(--radius-md);">
-                            Loading…
-                        </iframe>
+                        <div class="iframe-wrapper" id="iframeWrapper">
+                            <div class="iframe-loading" id="iframeLoading">
+                                <div class="loading-spinner"></div>
+                                <p>Loading registration form...</p>
+                            </div>
+                            <div class="iframe-error" id="iframeError" style="display: none;">
+                                <div class="error-icon">⚠️</div>
+                                <h3>Unable to load registration form</h3>
+                                <p>The registration form could not be loaded. Please try one of the following options:</p>
+                                <div class="error-actions">
+                                    <a href="https://reg.icampuserp.in/Form1015.aspx" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                                        Open Form in New Tab
+                                    </a>
+                                    <a href="mailto:enigma@united.edu.in" class="btn btn-outline">
+                                        Contact Us
+                                    </a>
+                                </div>
+                            </div>
+                            <iframe 
+                                id="registrationIframe"
+                                src="https://reg.icampuserp.in/Form1015.aspx" 
+                                width="100%" 
+                                height="1200" 
+                                frameborder="0" 
+                                marginheight="0" 
+                                marginwidth="0"
+                                title="ENIGMA XIII Registration Form"
+                                allow="forms"
+                                sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"
+                                style="border: none; border-radius: var(--radius-md); display: none;">
+                                Your browser does not support iframes. Please <a href="https://reg.icampuserp.in/Form1015.aspx" target="_blank">click here</a> to open the registration form.
+                            </iframe>
+                        </div>
                     </div>
                     
                     <p class="registration-note fade-in">
-                        <strong>Note:</strong> If the form doesn't load, please contact us at enigma@yourcollege.edu or call our coordinators.
+                        <strong>Note:</strong> If you experience any issues with the form, please contact us at <a href="mailto:enigma@united.edu.in">enigma@united.edu.in</a> or call our coordinators.
                     </p>
                 </div>
             </div>
@@ -162,12 +183,61 @@
         </div>
     </footer>
 
-    <div class="cursor-dot" id="cursorDot"></div>
-    <div class="cursor-outline" id="cursorOutline"></div>
 
     <script src="js/header.js"></script>
     <script src="js/animations.js"></script>
     <script src="js/main.js"></script>
+    <script>
+        // Registration iframe loading handler
+        document.addEventListener('DOMContentLoaded', function() {
+            const iframe = document.getElementById('registrationIframe');
+            const loadingDiv = document.getElementById('iframeLoading');
+            const errorDiv = document.getElementById('iframeError');
+            
+            if (!iframe) return;
+            
+            // Show iframe when loaded
+            iframe.addEventListener('load', function() {
+                setTimeout(function() {
+                    loadingDiv.style.display = 'none';
+                    iframe.style.display = 'block';
+                    iframe.style.opacity = '0';
+                    iframe.style.transition = 'opacity 0.5s ease';
+                    setTimeout(function() {
+                        iframe.style.opacity = '1';
+                    }, 50);
+                }, 500);
+            });
+            
+            // Handle iframe load error
+            iframe.addEventListener('error', function() {
+                loadingDiv.style.display = 'none';
+                errorDiv.style.display = 'block';
+            });
+            
+            // Fallback: If iframe doesn't load within 10 seconds, show error
+            setTimeout(function() {
+                if (loadingDiv.style.display !== 'none' && iframe.style.display === 'none') {
+                    loadingDiv.style.display = 'none';
+                    errorDiv.style.display = 'block';
+                }
+            }, 10000);
+            
+            // Try to detect if iframe content loaded (cross-origin limitation)
+            try {
+                // Check if iframe is accessible (will fail for cross-origin)
+                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                // If we can access it, it's loaded
+                if (iframeDoc) {
+                    loadingDiv.style.display = 'none';
+                    iframe.style.display = 'block';
+                }
+            } catch (e) {
+                // Cross-origin - can't access, rely on load event
+                console.log('Cross-origin iframe, using load event');
+            }
+        });
+    </script>
 </body>
 </html>
 

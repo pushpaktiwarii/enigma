@@ -39,18 +39,6 @@
     color: var(--color-text-secondary);
 }
 
-.food-coupon-info {
-    background-color: rgba(0, 255, 255, 0.1);
-    padding: var(--spacing-sm);
-    border-radius: var(--radius-md);
-    border-left: 3px solid var(--color-primary);
-    margin-top: var(--spacing-md);
-    color: var(--color-text-primary);
-}
-
-.food-coupon-info strong {
-    color: var(--color-primary);
-}
 
 .event-meta strong {
     color: var(--color-text-primary);
@@ -182,10 +170,6 @@
         font-size: 0.9rem;
     }
 
-    .food-coupon-info {
-        font-size: 0.85rem;
-        padding: var(--spacing-xs);
-    }
 
     .btn-large {
         font-size: 1rem;

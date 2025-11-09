@@ -6,11 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize all components
     console.log('ENIGMA XIII - Website Initialized');
     
-    // Set custom cursor if image provided
-    const customCursor = 'custom-cursor.png';
-    // Uncomment when cursor image is available:
-    // document.body.style.cursor = `url('${customCursor}'), auto`;
-    
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {

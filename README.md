@@ -15,7 +15,6 @@ ENIGMA XIII is the official cultural festival website showcasing events, gallery
 - **Sponsors Section** - Showcase festival sponsors with marquee animation
 - **Registration** - Integrated registration form
 - **Smooth Animations** - Parallax effects, fade-in animations, hover effects
-- **Custom Cursor** - Interactive cursor effects
 - **Video Background** - Hero section with video background
 
 ## 🛠️ Technologies Used
@@ -83,8 +82,7 @@ ENIGMA/
 ## 📝 Event Information
 
 - **Festival Dates**: November 21-22, 2025
-- **Registration Fee**: ₹400 per event
-- **Food Coupon**: ₹70 for 21st Nov + ₹70 for 22nd Nov (Total ₹140 included)
+- **Registration Fee**: ₹300 for two event participation
 - **Mode**: All events are offline (except gaming events)
 
 ## 📧 Contact
@@ -99,33 +97,16 @@ ENIGMA/
 
 ## ☕ Support the Developers
 
-If you found this project helpful or enjoyed working with it, consider supporting the developers:
+### 💳 Payment QR Code
 
-### 💳 Buy Me a Coffee / Support via PhonePe
+Scan the QR code below to make a payment:
 
-**Pushpak Tiwari**
-- 📱 PhonePe QR Code: Available in repository (`assests/qr/pushpak-phonepe.png`)
-- 💰 UPI ID: [Add your UPI ID if available]
+![Payment QR Code](assets/qr/payment-qr.jpg)
 
-**Prashant Pandey**
-- 📱 PhonePe QR Code: Available in repository (`assests/qr/prashant-pandey-phonepe.png`)
-- 💰 UPI ID: [Add your UPI ID if available]
-
-**Prashant Maurya**
-- 📱 PhonePe QR Code: Available in repository (`assests/qr/prashant-maurya-phonepe.png`)
-- 💰 UPI ID: [Add your UPI ID if available]
-
-### 🎁 Other Ways to Support
-
-- ⭐ **Star this repository** - Show your appreciation
-- 🐛 **Report bugs** - Help improve the website
-- 💡 **Suggest new features** - Share your ideas
-- 📢 **Share with others** - Spread the word about ENIGMA XIII
-- 💬 **Feedback** - Let us know what you think
-
-### 🙏 Thank You!
-
-Your support helps us continue building amazing projects and contributing to the developer community. Every contribution, no matter how small, is greatly appreciated!
+**How to use:**
+1. Open your UPI app (PhonePe, Google Pay, Paytm, etc.)
+2. Scan the QR code above
+3. Enter the amount and confirm payment
 
 ## 📄 License
 

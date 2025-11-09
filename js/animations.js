@@ -94,60 +94,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Custom Cursor & Mouse Follow Effect
-document.addEventListener('DOMContentLoaded', function() {
-    if (window.innerWidth > 768) { // Only on desktop
-        const cursorDot = document.getElementById('cursorDot');
-        const cursorOutline = document.getElementById('cursorOutline');
-        
-        if (cursorDot && cursorOutline) {
-            let mouseX = 0;
-            let mouseY = 0;
-            let outlineX = 0;
-            let outlineY = 0;
-
-            // Mouse move event
-            document.addEventListener('mousemove', function(e) {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                
-                cursorDot.style.left = mouseX + 'px';
-                cursorDot.style.top = mouseY + 'px';
-            });
-
-            // Lerp function for smooth following
-            function lerp(start, end, factor) {
-                return start + (end - start) * factor;
-            }
-
-            // Animate outline with lag
-            function animate() {
-                outlineX = lerp(outlineX, mouseX, 0.1);
-                outlineY = lerp(outlineY, mouseY, 0.1);
-                
-                cursorOutline.style.left = outlineX + 'px';
-                cursorOutline.style.top = outlineY + 'px';
-                
-                requestAnimationFrame(animate);
-            }
-            animate();
-
-            // Hover effects on links and buttons
-            const interactiveElements = document.querySelectorAll('a, button, .category-card, .btn');
-            
-            interactiveElements.forEach(element => {
-                element.addEventListener('mouseenter', function() {
-                    cursorOutline.classList.add('hover');
-                });
-                
-                element.addEventListener('mouseleave', function() {
-                    cursorOutline.classList.remove('hover');
-                });
-            });
-        }
-    }
-});
-
 // Hero Parallax Effect
 document.addEventListener('DOMContentLoaded', function() {
     const heroSection = document.querySelector('.hero-section');
