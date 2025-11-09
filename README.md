@@ -93,13 +93,11 @@ ENIGMA/
 
 ## 👨‍💻 Development Team
 
-**Made by** [Pushpak Tiwari](https://github.com/pushpakt), [Prashant Pandey](https://github.com/prashantpandey), [Prashant Maurya](https://github.com/prashantmaurya) with team
+**Made by** [Pushpak Tiwari](https://github.com/pushpaktiwarii), [Prashant Pandey](https://github.com/prashantucer), [Prashant Maurya](https://github.com/prashantmauryaa) with team
 
-## ☕ Support the Developers
+## ☕ Buy me a Coffee!
 
 ### 💳 Payment QR Code
-
-Scan the QR code below to make a payment:
 
 ![Payment QR Code](assets/qr/payment-qr.png)
 
