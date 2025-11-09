@@ -101,7 +101,7 @@ ENIGMA/
 
 Scan the QR code below to make a payment:
 
-![Payment QR Code](assets/qr/payment-qr.jpg)
+![Payment QR Code](assets/qr/payment-qr.png)
 
 **How to use:**
 1. Open your UPI app (PhonePe, Google Pay, Paytm, etc.)
