@@ -1,0 +1,21 @@
+{
+  "name": "enigma-xiii",
+  "version": "1.0.0",
+  "description": "ENIGMA XIII - Annual Cultural Festival Website",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve ."
+  },
+  "keywords": [
+    "cultural-festival",
+    "enigma",
+    "website"
+  ],
+  "author": "Pushpak Tiwari, Prashant Pandey, Prashant Maurya",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.x"
+  }
+}
+
