@@ -50,6 +50,57 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+    
+    // Lazy loading for event images
+    const eventImages = document.querySelectorAll('.event-image img[data-src]');
+    
+    if ('IntersectionObserver' in window && eventImages.length > 0) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    const dataSrc = img.getAttribute('data-src');
+                    
+                    if (dataSrc) {
+                        // Create new image to preload
+                        const newImg = new Image();
+                        newImg.onload = function() {
+                            img.src = dataSrc;
+                            img.removeAttribute('data-src');
+                            img.classList.add('loaded');
+                            // Add class to parent for CSS fallback
+                            img.closest('.event-image')?.classList.add('image-loaded');
+                        };
+                        newImg.onerror = function() {
+                            // If image fails to load, keep the texture background
+                            img.removeAttribute('data-src');
+                            img.style.display = 'none';
+                        };
+                        newImg.src = dataSrc;
+                        
+                        observer.unobserve(img);
+                    }
+                }
+            });
+        }, {
+            rootMargin: '50px' // Start loading 50px before image is visible
+        });
+        
+        eventImages.forEach(img => {
+            imageObserver.observe(img);
+        });
+    } else {
+        // Fallback: Load all images immediately if IntersectionObserver is not supported
+        eventImages.forEach(img => {
+            const dataSrc = img.getAttribute('data-src');
+            if (dataSrc) {
+                img.src = dataSrc;
+                img.removeAttribute('data-src');
+                img.classList.add('loaded');
+                img.closest('.event-image')?.classList.add('image-loaded');
+            }
+        });
+    }
 });
 
 

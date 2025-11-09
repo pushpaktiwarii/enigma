@@ -80,13 +80,188 @@
     height: 250px;
     overflow: hidden;
     position: relative;
+    background-color: var(--color-surface);
+}
+
+/* Category-specific background textures */
+.event-card[data-category="dance"] .event-image {
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 0, 255, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(0, 255, 255, 0.2) 0%, transparent 50%),
+        repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(0, 255, 255, 0.08) 8px, rgba(0, 255, 255, 0.08) 16px),
+        linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+    background-size: 200% 200%, 200% 200%, 32px 32px, 100% 100%;
+    animation: eventDancePattern 8s ease-in-out infinite;
+}
+
+.event-card[data-category="music"] .event-image {
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(255, 0, 255, 0.25) 0%, transparent 40%),
+        radial-gradient(circle at 70% 70%, rgba(0, 255, 255, 0.25) 0%, transparent 40%),
+        repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(0, 255, 255, 0.08) 8deg, transparent 16deg),
+        linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
+    background-size: 150% 150%, 150% 150%, 100% 100%, 100% 100%;
+    animation: eventMusicPattern 10s linear infinite;
+}
+
+.event-card[data-category="creative"] .event-image {
+    background: 
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 0, 255, 0.08) 2px, rgba(255, 0, 255, 0.08) 4px),
+        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0, 255, 255, 0.08) 2px, rgba(0, 255, 255, 0.08) 4px),
+        radial-gradient(circle at center, rgba(255, 0, 255, 0.15) 0%, transparent 70%),
+        linear-gradient(135deg, #ff00ff 0%, #00ffff 50%, #ff00ff 100%);
+    background-size: 24px 24px, 24px 24px, 100% 100%, 100% 100%;
+}
+
+.event-card[data-category="theatre"] .event-image {
+    background: 
+        linear-gradient(45deg, transparent 30%, rgba(0, 255, 255, 0.15) 50%, transparent 70%),
+        linear-gradient(-45deg, transparent 30%, rgba(255, 0, 255, 0.15) 50%, transparent 70%),
+        repeating-linear-gradient(90deg, rgba(0, 255, 255, 0.08) 0px, transparent 1px, transparent 16px, rgba(255, 0, 255, 0.08) 17px),
+        linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
+    background-size: 200% 200%, 200% 200%, 32px 100%, 100% 100%;
+    animation: eventTheatrePattern 6s ease-in-out infinite;
+}
+
+.event-card[data-category="fashion"] .event-image {
+    background: 
+        radial-gradient(ellipse at top, rgba(255, 0, 255, 0.25) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom, rgba(0, 255, 255, 0.25) 0%, transparent 50%),
+        repeating-linear-gradient(135deg, rgba(255, 0, 255, 0.08) 0px, transparent 2px, transparent 8px, rgba(0, 255, 255, 0.08) 10px),
+        linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+    background-size: 100% 60%, 100% 60%, 16px 16px, 100% 100%;
+}
+
+.event-card[data-category="gaming"] .event-image {
+    background: 
+        repeating-conic-gradient(from 0deg at 50% 50%, rgba(0, 255, 255, 0.15) 0deg, transparent 4deg, rgba(255, 0, 255, 0.15) 8deg, transparent 12deg),
+        repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(0, 255, 255, 0.08) 4px, rgba(0, 255, 255, 0.08) 5px),
+        linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
+    background-size: 100% 100%, 12px 12px, 100% 100%;
+    animation: eventGamingPattern 4s linear infinite;
+}
+
+.event-card[data-category="literary"] .event-image {
+    background: 
+        repeating-linear-gradient(0deg, rgba(255, 0, 255, 0.08) 0px, transparent 1px, transparent 6px, rgba(0, 255, 255, 0.08) 7px),
+        repeating-linear-gradient(90deg, rgba(0, 255, 255, 0.08) 0px, transparent 1px, transparent 6px, rgba(255, 0, 255, 0.08) 7px),
+        radial-gradient(circle at 25% 25%, rgba(255, 0, 255, 0.15) 0%, transparent 30%),
+        radial-gradient(circle at 75% 75%, rgba(0, 255, 255, 0.15) 0%, transparent 30%),
+        linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+    background-size: 14px 14px, 14px 14px, 50% 50%, 50% 50%, 100% 100%;
+}
+
+.event-card[data-category="sports"] .event-image {
+    background: 
+        repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(0, 255, 255, 0.12) 8px, rgba(0, 255, 255, 0.12) 9px),
+        repeating-linear-gradient(-45deg, transparent, transparent 8px, rgba(255, 0, 255, 0.12) 8px, rgba(255, 0, 255, 0.12) 9px),
+        radial-gradient(circle at center, rgba(0, 255, 255, 0.15) 0%, transparent 60%),
+        linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
+    background-size: 24px 24px, 24px 24px, 100% 100%, 100% 100%;
+    animation: eventSportsPattern 5s ease-in-out infinite;
+}
+
+.event-card[data-category="photo-film"] .event-image {
+    background: 
+        repeating-linear-gradient(0deg, rgba(0, 255, 255, 0.08) 0px, transparent 2px, transparent 3px),
+        repeating-linear-gradient(90deg, rgba(255, 0, 255, 0.08) 0px, transparent 2px, transparent 3px),
+        radial-gradient(circle at 20% 20%, rgba(255, 0, 255, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(0, 255, 255, 0.2) 0%, transparent 40%),
+        linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+    background-size: 6px 6px, 6px 6px, 60% 60%, 60% 60%, 100% 100%;
+}
+
+.event-card[data-category="business"] .event-image {
+    background: 
+        repeating-linear-gradient(45deg, rgba(0, 255, 255, 0.1) 0px, transparent 1px, transparent 10px),
+        repeating-linear-gradient(-45deg, rgba(255, 0, 255, 0.1) 0px, transparent 1px, transparent 10px),
+        radial-gradient(circle at center, rgba(0, 255, 255, 0.2) 0%, transparent 50%),
+        linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
+    background-size: 20px 20px, 20px 20px, 100% 100%, 100% 100%;
+}
+
+/* Loading placeholder */
+.event-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        rgba(17, 17, 17, 0.6) 0%, 
+        rgba(17, 17, 17, 0.4) 50%, 
+        rgba(17, 17, 17, 0.6) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    z-index: 1;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+/* Hide shimmer when image is loaded */
+.event-image:has(img.loaded)::before,
+.event-image:has(img[src]:not([src=""]))::before {
+    opacity: 0;
+    pointer-events: none;
+    display: none;
+}
+
+/* Fallback for browsers that don't support :has() - use JavaScript class */
+.event-image.image-loaded::before {
+    opacity: 0;
+    pointer-events: none;
+    display: none;
+}
+
+.event-image img.loaded {
+    z-index: 3;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Event pattern animations */
+@keyframes eventDancePattern {
+    0%, 100% { background-position: 0% 0%, 100% 100%, 0 0, 0 0; }
+    50% { background-position: 100% 100%, 0% 0%, 16px 16px, 0 0; }
+}
+
+@keyframes eventMusicPattern {
+    0% { background-position: 0% 0%, 100% 100%, 0deg; }
+    100% { background-position: 100% 100%, 0% 0%, 360deg; }
+}
+
+@keyframes eventTheatrePattern {
+    0%, 100% { background-position: 0% 0%, 100% 100%, 0 0, 0 0; }
+    50% { background-position: 100% 100%, 0% 0%, 32px 0, 0 0; }
+}
+
+@keyframes eventGamingPattern {
+    0% { background-position: 0deg, 0 0, 0 0; }
+    100% { background-position: 360deg, 12px 12px, 0 0; }
+}
+
+@keyframes eventSportsPattern {
+    0%, 100% { background-position: 0 0, 0 0, center, 0 0; }
+    50% { background-position: 24px 24px, -24px -24px, center, 0 0; }
 }
 
 .event-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform var(--transition-normal);
+    transition: transform var(--transition-normal), opacity 0.3s ease;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+}
+
+.event-image img.loaded,
+.event-image img[src]:not([src=""]) {
+    opacity: 1;
 }
 
 .event-card:hover .event-image img {
