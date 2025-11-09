@@ -1,0 +1,233 @@
+/* ============================================
+   Event Detail Page Styles
+   ============================================ */
+
+.event-detail-section {
+    background-color: var(--color-bg);
+    min-height: 100vh;
+}
+
+.event-detail-grid {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    gap: var(--spacing-xl);
+    align-items: start;
+}
+
+/* Sticky Column */
+.event-sticky {
+    position: sticky;
+    top: 100px;
+    background-color: var(--color-surface);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.event-header h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text-primary);
+}
+
+.event-meta {
+    margin-bottom: var(--spacing-lg);
+}
+
+.event-meta p {
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text-secondary);
+}
+
+.food-coupon-info {
+    background-color: rgba(0, 255, 255, 0.1);
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--color-primary);
+    margin-top: var(--spacing-md);
+    color: var(--color-text-primary);
+}
+
+.food-coupon-info strong {
+    color: var(--color-primary);
+}
+
+.event-meta strong {
+    color: var(--color-text-primary);
+}
+
+.event-meta span {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.btn-large {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: 1.2rem;
+    text-align: center;
+    display: block;
+}
+
+/* Scrollable Column */
+.event-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+.content-section {
+    background-color: var(--color-surface);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+}
+
+.content-section h2 {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: var(--spacing-xs);
+}
+
+.content-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.content-section li {
+    padding: var(--spacing-sm) 0;
+    padding-left: var(--spacing-md);
+    position: relative;
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+}
+
+.content-section li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: bold;
+}
+
+.content-section p {
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+}
+
+/* Coordinators Grid */
+.coordinators-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.coordinator-card {
+    text-align: center;
+    padding: var(--spacing-md);
+    background-color: var(--color-bg);
+    border-radius: var(--radius-md);
+}
+
+.coordinator-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: var(--spacing-sm);
+    border: 3px solid var(--color-primary);
+}
+
+.coordinator-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-text-primary);
+}
+
+.coordinator-card p {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .event-detail-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+
+    .event-sticky {
+        position: relative;
+        top: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .event-detail-section {
+        padding-top: calc(var(--spacing-lg) + 80px) !important;
+    }
+
+    .event-header h1 {
+        font-size: 2rem;
+    }
+
+    .event-meta {
+        font-size: 0.9rem;
+    }
+
+    .event-meta p {
+        margin-bottom: var(--spacing-xs);
+        font-size: 0.9rem;
+    }
+
+    .food-coupon-info {
+        font-size: 0.85rem;
+        padding: var(--spacing-xs);
+    }
+
+    .btn-large {
+        font-size: 1rem;
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    .content-section {
+        padding: var(--spacing-md);
+    }
+
+    .content-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .coordinators-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+
+    .coordinator-card {
+        padding: var(--spacing-sm);
+    }
+
+    .coordinator-card img {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .event-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .content-section h2 {
+        font-size: 1.3rem;
+    }
+
+    .coordinator-card img {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+
