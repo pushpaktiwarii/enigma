@@ -50,11 +50,12 @@ ENIGMA/
 ├── gallery.js              # Gallery image/video loading
 ├── animations.js           # Scroll animations, parallax
 ├── main.js                 # Custom cursor, video handling
-└── assests/
+└── assets/
     ├── logo/               # ENIGMA logo
-    ├── enigma xii/         # Gallery images and videos
-    ├── sponseer/           # Sponsor logos
-    └── video/              # Hero section video
+    ├── enigma xii/          # Gallery images and videos
+    ├── sponseer/            # Sponsor logos
+    ├── qr/                  # Payment QR code
+    └── video/               # Hero section video
 ```
 
 ## 🚀 Getting Started
@@ -87,7 +88,7 @@ ENIGMA/
 
 ## 📧 Contact
 
-- **Email**: enigma@united.edu.in
+- **Email**: ugienigma@united.edu.in
 - **Instagram**: [@enigmafest_25](https://www.instagram.com/enigmafest_25/)
 - **Address**: 8WV8+Q4H, Nevada Samogar, dairy, United Naini, Naini, Prayagraj, Uttar Pradesh 211010
 
@@ -95,9 +96,11 @@ ENIGMA/
 
 **Made by** [Pushpak Tiwari](https://github.com/pushpaktiwarii), [Prashant Pandey](https://github.com/prashantucer), [Prashant Maurya](https://github.com/prashantmauryaa) with team
 
-## ☕ Buy me a Coffee!
+## ☕ Support the Developers
 
 ### 💳 Payment QR Code
+
+Scan the QR code below to make a payment:
 
 ![Payment QR Code](assets/qr/payment-qr.png)
 

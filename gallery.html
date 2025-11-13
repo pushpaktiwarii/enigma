@@ -2,21 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#0A0A0A">
     <title>Gallery - ENIGMA XIII</title>
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/logo/ENIGMA!_20251018_152032_0000.png">
     <link rel="shortcut icon" type="image/png" href="assets/logo/ENIGMA!_20251018_152032_0000.png">
     <link rel="apple-touch-icon" href="assets/logo/ENIGMA!_20251018_152032_0000.png">
+    <!-- Resource Hints for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/gallery.css">
-    <link rel="stylesheet" href="css/animations.css">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
+    <!-- Critical CSS -->
+    <style>
+        body{background:#0A0A0A;color:#fff;font-family:'Lato',sans-serif;margin:0;padding:0}
+        .header{position:fixed;top:0;left:0;width:100%;z-index:300;transition:transform .3s ease}
+    </style>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/global.css" media="all">
+    <link rel="stylesheet" href="css/header.css" media="all">
+    <link rel="stylesheet" href="css/footer.css" media="all">
+    <link rel="stylesheet" href="css/gallery.css" media="all">
+    <link rel="stylesheet" href="css/animations.css" media="all">
 </head>
 <body>
     <a href="#main-content" class="skip-to-main">Skip to Main Content</a>
@@ -136,15 +148,15 @@
                     <h4>Contact Us</h4>
                     <div class="contact-info">
                         <p><strong>Contact Names & Numbers:</strong></p>
-                        <p>XXX: +91-XXXXXXXXXX</p>
-                        <p>XXX: +91-XXXXXXXXXX</p>
-                        <p>XXX: +91-XXXXXXXXXX</p>
-                        <p>XXX: +91-XXXXXXXXXX</p>
+                        <p><strong>UCER:</strong> Himanshu Mishra</p>
+                        <p>+91 89601 94225</p>
+                        <p><strong>UIT:</strong> Prakhar Agrahari</p>
+                        <p>+91 96160 62606</p>
                         <p><strong>Address:</strong></p>
                         <p>8WV8+Q4H, Nevada Samogar,dairy,United Naini, Naini, Prayagraj, Uttar Pradesh 211010
 </p>
                         <p><strong>Email:</strong></p>
-                        <p>enigma@united.edu.in</p>
+                        <p>ugienigma@united.edu.in</p>
                     </div>
                 </div>
             </div>
@@ -156,10 +168,11 @@
     </footer>
 
 
-    <script src="js/header.js"></script>
-    <script src="js/animations.js"></script>
-    <script src="js/gallery.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/header.js" defer></script>
+    <script src="js/animations.js" defer></script>
+    <script src="js/gallery.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/version-check.js" defer></script>
 </body>
 </html>
 

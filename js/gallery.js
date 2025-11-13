@@ -3,34 +3,45 @@
 // ============================================
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Images and Videos from assets/enigma xii/ folder
+    // Images from assets/enigma xii/ folder
+    // Images are in WebP format for better performance and smaller file sizes
+    // Starting from 1.webp, 2.webp, etc. in order
     const galleryItems = [
-        // Images
-        { type: 'image', src: '1000079685.jpg' },
-        { type: 'image', src: '1000079687.jpg' },
-        { type: 'image', src: '1000079688.jpg' },
-        { type: 'image', src: '1000079689.jpg' },
-        { type: 'image', src: '1000079690.jpg' },
-        { type: 'image', src: '1000079691.jpg' },
-        { type: 'image', src: '1000079692.jpg' },
-        { type: 'image', src: '1000079693.jpg' },
-        { type: 'image', src: '1000079694.jpg' },
-        { type: 'image', src: '1000079697.jpg' },
-        { type: 'image', src: '1000079698.jpg' },
-        { type: 'image', src: '1000079700.jpg' },
-        { type: 'image', src: '1000079701.jpg' },
-        { type: 'image', src: '1000079702.jpg' },
-        { type: 'image', src: '1000079703.jpg' },
-        { type: 'image', src: '1000079704.jpg' },
-        { type: 'image', src: '1000079705.jpg' },
-        { type: 'image', src: '1000079706.jpg' },
-        { type: 'image', src: '1000079708.jpg' },
-        { type: 'image', src: '1000079710.jpg' },
-        { type: 'image', src: '1000079711.jpg' },
-        { type: 'image', src: '1000079714.jpg' },
-        // Videos
-        { type: 'video', src: '1000079677.mp4' },
-        { type: 'video', src: '1000079681.mp4' },
+        // Numbered images starting from 1 (converted from JPG to WebP)
+        { type: 'image', src: '1.webp' },
+        { type: 'image', src: '2.webp' },
+        { type: 'image', src: '3.webp' },
+        { type: 'image', src: '4.webp' },
+        { type: 'image', src: '5.webp' },
+        { type: 'image', src: '6.webp' },
+        { type: 'image', src: '7.webp' },
+        { type: 'image', src: '8.webp' },
+        { type: 'image', src: '9.webp' },
+        { type: 'image', src: '10.webp' },
+        { type: 'image', src: '11.webp' },
+        { type: 'image', src: '12.webp' },
+        { type: 'image', src: '13.webp' },
+        { type: 'image', src: '14.webp' },
+        { type: 'image', src: '15.webp' },
+        { type: 'image', src: '16.webp' },
+        { type: 'image', src: '17.webp' },
+        { type: 'image', src: '18.webp' },
+        // Additional existing WebP images
+        { type: 'image', src: '1000079688.webp' },
+        { type: 'image', src: '1000079689.webp' },
+        { type: 'image', src: '1000079690.webp' },
+        { type: 'image', src: '1000079692.webp' },
+        { type: 'image', src: '1000079693.webp' },
+        { type: 'image', src: '1000079694.webp' },
+        { type: 'image', src: '1000079697.webp' },
+        { type: 'image', src: '1000079698.webp' },
+        { type: 'image', src: '1000079700.webp' },
+        { type: 'image', src: '1000079701.webp' },
+        { type: 'image', src: '1000079702.webp' },
+        { type: 'image', src: '1000079703.webp' },
+        { type: 'image', src: '1000079704.webp' },
+        { type: 'image', src: '1000079705.webp' },
+        { type: 'image', src: '1000079708.webp' },
     ];
     
     const galleryGrid = document.getElementById('galleryGrid');
@@ -40,67 +51,50 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
     
-    // Create loading placeholder
+    // Create simple loading placeholder
     function createPlaceholder() {
         const placeholder = document.createElement('div');
-        placeholder.className = 'gallery-item gallery-placeholder';
-        placeholder.innerHTML = '<div class="loading-spinner"></div>';
+        placeholder.className = 'gallery-placeholder';
         return placeholder;
     }
     
     // Create gallery item with lazy loading
     function createGalleryItem(item, index) {
         const galleryItem = document.createElement('div');
-        galleryItem.className = 'gallery-item hover-color-overlay';
+        galleryItem.className = 'gallery-item';
         galleryItem.setAttribute('data-index', index);
         
-        if (item.type === 'video') {
-            galleryItem.classList.add('video-item');
-            // Create placeholder first
-            const placeholder = createPlaceholder();
-            galleryItem.appendChild(placeholder);
-            
-            // Load video only when visible
-            const video = document.createElement('video');
-            video.setAttribute('data-src', `assets/enigma xii/${item.src}`);
-            video.muted = true;
-            video.setAttribute('playsinline', '');
-            video.setAttribute('preload', 'none'); // Don't preload videos
-            video.style.display = 'none';
-            galleryItem.appendChild(video);
-            
-            const overlay = document.createElement('div');
-            overlay.className = 'gallery-overlay';
-            overlay.innerHTML = '<span class="gallery-category">Video</span>';
-            galleryItem.appendChild(overlay);
-        } else {
-            // Create placeholder first
-            const placeholder = createPlaceholder();
-            galleryItem.appendChild(placeholder);
-            
-            // Create image with data-src for lazy loading
-            const img = document.createElement('img');
-            img.setAttribute('data-src', `assets/enigma xii/${item.src}`);
-            img.alt = 'ENIGMA XII Gallery';
-            img.style.display = 'none';
-            img.onerror = function() {
-                console.log('Failed to load image:', this.src);
-                this.style.display = 'none';
-                const placeholder = galleryItem.querySelector('.gallery-placeholder');
-                if (placeholder) {
-                    placeholder.innerHTML = '<div class="error-message">Failed to load</div>';
-                }
-            };
-            img.onload = function() {
-                const placeholder = galleryItem.querySelector('.gallery-placeholder');
-                if (placeholder) {
+        // Only images now - videos removed
+        // Create placeholder first
+        const placeholder = createPlaceholder();
+        galleryItem.appendChild(placeholder);
+        
+        // Create image with data-src for lazy loading
+        const img = document.createElement('img');
+        img.setAttribute('data-src', `assets/enigma xii/${item.src}`);
+        img.alt = 'ENIGMA XII Gallery';
+        img.style.display = 'none';
+        img.onerror = function() {
+            console.log('Failed to load image:', this.src);
+            this.style.display = 'none';
+            const placeholder = galleryItem.querySelector('.gallery-placeholder');
+            if (placeholder) {
+                placeholder.innerHTML = '<div class="error-message">Failed to load</div>';
+            }
+        };
+        img.onload = function() {
+            const placeholder = galleryItem.querySelector('.gallery-placeholder');
+            if (placeholder) {
+                placeholder.style.opacity = '0';
+                setTimeout(() => {
                     placeholder.style.display = 'none';
-                }
-                this.style.display = 'block';
-                galleryItem.classList.add('loaded');
-            };
-            galleryItem.appendChild(img);
-        }
+                }, 200);
+            }
+            this.style.display = 'block';
+            this.classList.add('loaded');
+            galleryItem.classList.add('loaded');
+        };
+        galleryItem.appendChild(img);
         
         return galleryItem;
     }
@@ -111,66 +105,95 @@ document.addEventListener('DOMContentLoaded', function() {
         galleryGrid.appendChild(galleryItem);
     });
     
-    // Intersection Observer for lazy loading
+    // Preload first 6 visible images immediately
+    const allGalleryItems = galleryGrid.querySelectorAll('.gallery-item');
+    const preloadCount = Math.min(6, allGalleryItems.length);
+    
+    for (let i = 0; i < preloadCount; i++) {
+        const galleryItem = allGalleryItems[i];
+        const img = galleryItem.querySelector('img[data-src]');
+        if (img) {
+            const dataSrc = img.getAttribute('data-src');
+            if (dataSrc) {
+                const newImg = new Image();
+                newImg.onload = function() {
+                    img.src = dataSrc;
+                    img.removeAttribute('data-src');
+                    img.classList.add('loaded');
+                    const placeholder = galleryItem.querySelector('.gallery-placeholder');
+                    if (placeholder) {
+                        placeholder.style.opacity = '0';
+                        setTimeout(() => {
+                            placeholder.style.display = 'none';
+                        }, 200);
+                    }
+                    galleryItem.classList.add('loaded');
+                };
+                newImg.onerror = function() {
+                    img.removeAttribute('data-src');
+                    img.style.display = 'none';
+                    const placeholder = galleryItem.querySelector('.gallery-placeholder');
+                    if (placeholder) {
+                        placeholder.innerHTML = '<div class="error-message">Failed to load</div>';
+                    }
+                };
+                newImg.src = dataSrc;
+            }
+        }
+    }
+    
+    // Intersection Observer for lazy loading remaining items
     const imageObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const galleryItem = entry.target;
                 const img = galleryItem.querySelector('img[data-src]');
-                const video = galleryItem.querySelector('video[data-src]');
                 
                 if (img) {
                     // Load image
-                    img.src = img.getAttribute('data-src');
-                    img.removeAttribute('data-src');
-                    observer.unobserve(galleryItem);
-                } else if (video) {
-                    // Load video
-                    video.src = video.getAttribute('data-src');
-                    video.removeAttribute('data-src');
-                    const placeholder = galleryItem.querySelector('.gallery-placeholder');
-                    if (placeholder) {
-                        placeholder.style.display = 'none';
+                    const dataSrc = img.getAttribute('data-src');
+                    if (dataSrc) {
+                        const newImg = new Image();
+                        newImg.onload = function() {
+                            img.src = dataSrc;
+                            img.removeAttribute('data-src');
+                            img.classList.add('loaded');
+                            const placeholder = galleryItem.querySelector('.gallery-placeholder');
+                            if (placeholder) {
+                                placeholder.style.opacity = '0';
+                                setTimeout(() => {
+                                    placeholder.style.display = 'none';
+                                }, 200);
+                            }
+                            galleryItem.classList.add('loaded');
+                        };
+                        newImg.onerror = function() {
+                            img.removeAttribute('data-src');
+                            img.style.display = 'none';
+                            const placeholder = galleryItem.querySelector('.gallery-placeholder');
+                            if (placeholder) {
+                                placeholder.innerHTML = '<div class="error-message">Failed to load</div>';
+                            }
+                        };
+                        newImg.src = dataSrc;
                     }
-                    video.style.display = 'block';
-                    galleryItem.classList.add('loaded');
                     observer.unobserve(galleryItem);
                 }
             }
         });
     }, {
-        rootMargin: '50px' // Start loading 50px before item is visible
+        rootMargin: '50px', // Start loading 50px before item is visible
+        threshold: 0.01
     });
     
-    // Observe all gallery items
-    const allGalleryItems = galleryGrid.querySelectorAll('.gallery-item');
-    allGalleryItems.forEach(item => {
-        imageObserver.observe(item);
-    });
-    
-    // Video play on hover (only for loaded videos)
-    galleryGrid.addEventListener('mouseenter', function(e) {
-        const galleryItem = e.target.closest('.gallery-item.video-item');
-        if (galleryItem && galleryItem.classList.contains('loaded')) {
-            const video = galleryItem.querySelector('video');
-            if (video && video.src) {
-                video.play().catch(err => {
-                    console.log('Video autoplay failed:', err);
-                });
-            }
+    // Observe remaining gallery items (skip first 6)
+    for (let i = preloadCount; i < allGalleryItems.length; i++) {
+        const galleryItem = allGalleryItems[i];
+        const img = galleryItem.querySelector('img[data-src]');
+        if (img) {
+            imageObserver.observe(galleryItem);
         }
-    }, true);
-    
-    galleryGrid.addEventListener('mouseleave', function(e) {
-        const galleryItem = e.target.closest('.gallery-item.video-item');
-        if (galleryItem) {
-            const video = galleryItem.querySelector('video');
-            if (video) {
-                video.pause();
-                video.currentTime = 0;
-            }
-        }
-    }, true);
+    }
 });
 
 

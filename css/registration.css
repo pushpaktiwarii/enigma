@@ -8,7 +8,7 @@
 }
 
 .registration-container {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: var(--spacing-lg);
 }
@@ -28,107 +28,461 @@
     margin-bottom: var(--spacing-xl);
 }
 
-.registration-form-container {
+/* Embedded Registration Form Styles */
+.registration-embed {
     background-color: var(--color-surface);
     border-radius: var(--radius-lg);
     padding: var(--spacing-md);
     margin-bottom: var(--spacing-md);
-    overflow: hidden;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-}
-
-.iframe-wrapper {
-    position: relative;
-    min-height: 1200px;
-    background-color: var(--color-bg);
-    border-radius: var(--radius-md);
     overflow: hidden;
 }
 
-.iframe-loading {
-    position: absolute;
-    top: 0;
-    left: 0;
+.registration-iframe {
     width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--color-surface);
-    z-index: 2;
+    min-height: 800px;
+    border: none;
+    border-radius: var(--radius-md);
+    background-color: #fff;
+    display: block;
 }
 
-.iframe-loading .loading-spinner {
-    width: 50px;
-    height: 50px;
-    border: 4px solid rgba(0, 255, 255, 0.2);
-    border-top-color: var(--color-primary);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    margin-bottom: var(--spacing-md);
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
+/* Responsive iframe */
+@media (max-width: 768px) {
+    .registration-iframe {
+        min-height: 600px;
     }
 }
 
-.iframe-loading p {
+@media (max-width: 480px) {
+    .registration-iframe {
+        min-height: 500px;
+    }
+}
+
+.embed-note {
+    text-align: center;
     color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.embed-note a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    transition: color var(--transition-normal);
+}
+
+.embed-note a:hover {
+    color: var(--color-secondary);
+}
+
+/* ============================================
+   Registration Form Styles
+   ============================================ */
+
+.registration-form {
+    background-color: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.form-section {
+    margin-bottom: var(--spacing-xl);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-section:last-of-type {
+    border-bottom: none;
+}
+
+.form-section-title {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.form-section-subtitle {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.form-row-three {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-text-primary);
+}
+
+.required {
+    color: var(--color-secondary);
+    margin-left: 2px;
+}
+
+.optional {
+    color: var(--color-text-secondary);
+    font-size: 0.85rem;
+    font-weight: normal;
+    margin-left: 0.25rem;
+    font-style: italic;
+}
+
+.form-group input,
+.form-group select {
+    padding: 0.75rem 1rem;
+    background-color: var(--color-bg);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    color: var(--color-text-primary);
     font-size: 1rem;
+    font-family: var(--font-body);
+    transition: all var(--transition-normal);
+}
+
+.form-group input::placeholder {
+    color: var(--color-text-secondary);
+    opacity: 0.6;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.1);
+}
+
+.form-group input::placeholder {
+    color: var(--color-text-secondary);
+    opacity: 0.6;
+}
+
+.form-group input:invalid:not(:placeholder-shown),
+.form-group select:invalid:not(:placeholder-shown),
+.form-group input.error,
+.form-group select.error {
+    border-color: var(--color-secondary);
+}
+
+.form-group input:valid:not(:placeholder-shown) {
+    border-color: rgba(0, 255, 255, 0.3);
+}
+
+.error-message {
+    color: var(--color-secondary);
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+    display: none;
+}
+
+.error-message.show {
+    display: block;
+}
+
+.form-hint {
+    display: block;
+    color: var(--color-text-secondary);
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}
+
+/* Checkbox Styles */
+.checkbox-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+    gap: 0.75rem;
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin-top: 0.25rem;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--color-primary);
+    flex-shrink: 0;
+}
+
+.checkbox-label span {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+.checkbox-label a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-normal);
+}
+
+.checkbox-label a:hover {
+    color: var(--color-secondary);
+    text-decoration: underline;
+}
+
+/* File Upload Styles */
+.file-upload-wrapper {
+    position: relative;
+}
+
+.file-upload-wrapper input[type="file"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.file-upload-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--color-bg);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    color: var(--color-text-primary);
+}
+
+.file-upload-label:hover {
+    background-color: var(--color-surface);
+    border-color: var(--color-primary);
+}
+
+.file-icon {
+    font-size: 1.2rem;
+}
+
+.file-name {
+    display: block;
+    margin-top: 0.5rem;
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.file-name.uploading {
+    color: var(--color-primary);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
+
+.upload-rules {
+    background-color: var(--color-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    margin-top: 0.5rem;
+}
+
+.upload-rules ul {
+    list-style: none;
+    padding: 0;
     margin: 0;
 }
 
-.iframe-error {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--color-surface);
-    padding: var(--spacing-xl);
-    text-align: center;
-    z-index: 2;
-}
-
-.error-icon {
-    font-size: 3rem;
-    margin-bottom: var(--spacing-md);
-}
-
-.iframe-error h3 {
-    color: var(--color-text-primary);
-    font-size: 1.5rem;
-    margin-bottom: var(--spacing-md);
-}
-
-.iframe-error p {
+.upload-rules li {
     color: var(--color-text-secondary);
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: var(--spacing-lg);
-    max-width: 500px;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
 }
 
-.error-actions {
-    display: flex;
+.upload-rules li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: bold;
+}
+
+.upload-rules li:last-child {
+    margin-bottom: 0;
+}
+
+/* Events Selection Grid */
+.events-selection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: var(--spacing-md);
-    flex-wrap: wrap;
-    justify-content: center;
+    margin-top: var(--spacing-md);
 }
 
-.registration-form-container iframe {
-    min-height: 1200px;
-    width: 100%;
-    border: none;
+.event-checkbox-card {
+    position: relative;
+    background-color: var(--color-bg);
+    border: 2px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--radius-md);
-    background-color: white;
+    padding: var(--spacing-md);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.event-checkbox-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 255, 255, 0.2);
+}
+
+.event-checkbox-card.selected {
+    border-color: var(--color-primary);
+    background-color: rgba(0, 255, 255, 0.05);
+    box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.2);
+}
+
+.event-checkbox-card input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.event-checkbox-card .event-name {
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.25rem;
+    font-size: 1rem;
+}
+
+.event-checkbox-card .event-category {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.event-checkbox-card .event-type {
+    font-size: 0.8rem;
+    color: var(--color-primary);
+    margin-top: 0.5rem;
+}
+
+/* Payment Information */
+.payment-info {
+    margin-top: var(--spacing-md);
+}
+
+.payment-summary {
+    background-color: var(--color-bg);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.summary-row:last-child {
+    border-bottom: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--color-primary);
+}
+
+.summary-row span:first-child {
+    color: var(--color-text-secondary);
+}
+
+.summary-row span:last-child {
+    color: var(--color-text-primary);
+    font-weight: 500;
+}
+
+.payment-method {
+    margin-bottom: var(--spacing-lg);
+}
+
+.payment-method p {
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.6;
+}
+
+.payment-method strong {
+    color: var(--color-text-primary);
+}
+
+.qr-code-container {
+    display: flex;
+    justify-content: center;
+    margin: var(--spacing-md) 0;
+    padding: var(--spacing-md);
+    background-color: var(--color-bg);
+    border-radius: var(--radius-md);
+}
+
+.qr-code {
+    max-width: 250px;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--spacing-xl);
+}
+
+.btn-large {
+    padding: 1rem 3rem;
+    font-size: 1.1rem;
+    min-width: 250px;
+}
+
+.btn-loader {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
 }
 
 .registration-note {
@@ -162,6 +516,10 @@
         max-width: 100%;
         padding: var(--spacing-md);
     }
+    
+    .events-selection-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
 }
 
 @media (max-width: 768px) {
@@ -183,31 +541,31 @@
         margin-bottom: var(--spacing-lg);
     }
 
-    .registration-form-container {
-        padding: var(--spacing-sm);
+    .registration-form {
+        padding: var(--spacing-md);
         border-radius: var(--radius-md);
     }
 
-    .iframe-wrapper {
-        min-height: 800px;
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
     }
     
-    .registration-form-container iframe {
-        min-height: 800px;
+    .form-row-three {
+        grid-template-columns: 1fr;
+    }
+    
+    .events-selection-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-section-title {
+        font-size: 1.3rem;
+    }
+    
+    .btn-large {
         width: 100%;
-    }
-    
-    .iframe-error {
-        padding: var(--spacing-lg);
-    }
-    
-    .error-actions {
-        flex-direction: column;
-    }
-    
-    .error-actions .btn {
-        width: 100%;
-        max-width: 300px;
+        max-width: 100%;
     }
 
     .registration-note {
@@ -225,22 +583,16 @@
         font-size: 1.8rem;
     }
 
-    .iframe-wrapper {
-        min-height: 700px;
+    .registration-form {
+        padding: var(--spacing-sm);
     }
     
-    .registration-form-container iframe {
-        min-height: 700px;
+    .form-section {
+        margin-bottom: var(--spacing-lg);
+        padding-bottom: var(--spacing-md);
     }
     
-    .iframe-error h3 {
-        font-size: 1.2rem;
-    }
-    
-    .iframe-error p {
-        font-size: 0.9rem;
+    .qr-code {
+        max-width: 200px;
     }
 }
-
-
-

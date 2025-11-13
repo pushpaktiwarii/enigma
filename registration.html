@@ -2,21 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#0A0A0A">
     <title>Registration - ENIGMA XIII</title>
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/logo/ENIGMA!_20251018_152032_0000.png">
     <link rel="shortcut icon" type="image/png" href="assets/logo/ENIGMA!_20251018_152032_0000.png">
     <link rel="apple-touch-icon" href="assets/logo/ENIGMA!_20251018_152032_0000.png">
+    
+    <!-- Resource Hints for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/registration.css">
-    <link rel="stylesheet" href="css/animations.css">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    
+    <!-- Fonts with optimized loading -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- Critical CSS -->
+    <style>
+        body{background:#0A0A0A;color:#fff;font-family:'Lato',sans-serif;margin:0;padding:0}
+        .header{position:fixed;top:0;left:0;width:100%;z-index:300;transition:transform .3s ease}
+    </style>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/global.css" media="all">
+    <link rel="stylesheet" href="css/header.css" media="all">
+    <link rel="stylesheet" href="css/footer.css" media="all">
+    <link rel="stylesheet" href="css/registration.css" media="all">
+    <link rel="stylesheet" href="css/animations.css" media="all">
 </head>
 <body>
     <a href="#main-content" class="skip-to-main">Skip to Main Content</a>
@@ -61,49 +77,197 @@
                 <div class="registration-container">
                     <h1 class="fade-in">ENIGMA XIII Registration</h1>
                     <p class="registration-intro fade-in">
-                        Welcome to ENIGMA XIII registration! Please fill out the form below to register for your desired events. 
-                        Make sure to read all the rules and regulations before submitting your registration.
+                        Welcome to ENIGMA XIII registration! Please fill out the form below to register for your desired events.
                     </p>
                     
-                    <!-- ENIGMA Registration Form -->
-                    <div class="registration-form-container fade-in">
-                        <div class="iframe-wrapper" id="iframeWrapper">
-                            <div class="iframe-loading" id="iframeLoading">
-                                <div class="loading-spinner"></div>
-                                <p>Loading registration form...</p>
-                            </div>
-                            <div class="iframe-error" id="iframeError" style="display: none;">
-                                <div class="error-icon">⚠️</div>
-                                <h3>Unable to load registration form</h3>
-                                <p>The registration form could not be loaded. Please try one of the following options:</p>
-                                <div class="error-actions">
-                                    <a href="https://reg.icampuserp.in/Form1015.aspx" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-                                        Open Form in New Tab
-                                    </a>
-                                    <a href="mailto:enigma@united.edu.in" class="btn btn-outline">
-                                        Contact Us
-                                    </a>
-                                </div>
-                            </div>
-                            <iframe 
-                                id="registrationIframe"
-                                src="https://reg.icampuserp.in/Form1015.aspx" 
-                                width="100%" 
-                                height="1200" 
-                                frameborder="0" 
-                                marginheight="0" 
-                                marginwidth="0"
-                                title="ENIGMA XIII Registration Form"
-                                allow="forms"
-                                sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"
-                                style="border: none; border-radius: var(--radius-md); display: none;">
-                                Your browser does not support iframes. Please <a href="https://reg.icampuserp.in/Form1015.aspx" target="_blank">click here</a> to open the registration form.
-                            </iframe>
-                        </div>
+                    <!-- Embedded Registration Form -->
+                    <div class="registration-embed fade-in">
+                        <iframe 
+                            src="https://reg.icampuserp.in/Form1015.aspx" 
+                            title="ENIGMA XIII Registration Form"
+                            class="registration-iframe"
+                            allow="forms"
+                            loading="lazy">
+                        </iframe>
+                        <p class="embed-note">
+                            If the form doesn't load, <a href="https://reg.icampuserp.in/Form1015.aspx" target="_blank" rel="noopener noreferrer">click here to open in a new tab</a>.
+                        </p>
                     </div>
                     
+                    <!-- Hidden form for reference (removed) -->
+                    <form class="registration-form fade-in" id="registrationForm" style="display: none;" novalidate>
+                        <!-- Personal Information Section -->
+                        <div class="form-section">
+                            <h2 class="form-section-title">Personal Information</h2>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="studentName">Student Name <span class="required">*</span></label>
+                                    <input type="text" id="studentName" name="studentName" required placeholder="Student Name">
+                                    <span class="error-message" id="studentNameError"></span>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="studIdNo">Stud Id No. <span class="required">*</span></label>
+                                    <input type="text" id="studIdNo" name="studIdNo" required placeholder="Stud Id No.">
+                                    <span class="error-message" id="studIdNoError"></span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="groupName">Group Name (optional)</label>
+                                    <input type="text" id="groupName" name="groupName" placeholder="Group Name">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- College and Aadhaar Section -->
+                        <div class="form-section">
+                            <h2 class="form-section-title">College & Identity</h2>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="college">College <span class="required">*</span></label>
+                                    <select id="college" name="college" required>
+                                        <option value="">-- Select College --</option>
+                                        <option value="UCER">United College of Engineering and Research (UCER)</option>
+                                        <option value="UIM">United Institute of Management (UIM)</option>
+                                        <option value="UPT">United Polytechnic (UPT)</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    <span class="error-message" id="collegeError"></span>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="aadhaarNo">Aadhaar No <span class="required">*</span></label>
+                                    <input type="text" id="aadhaarNo" name="aadhaarNo" required placeholder="Enter Aadhaar Number" pattern="[0-9]{12}" maxlength="12">
+                                    <span class="error-message" id="aadhaarNoError"></span>
+                                </div>
+                            </div>
+                            
+                            <!-- Custom College Field (shown when "Other" is selected) -->
+                            <div class="form-row" id="customCollegeRow" style="display: none; grid-template-columns: 1fr; visibility: hidden;">
+                                <div class="form-group" style="width: 100%;">
+                                    <label for="customCollege">Enter Your College Name <span class="required">*</span></label>
+                                    <input type="text" id="customCollege" name="customCollege" placeholder="Enter your college name" style="width: 100%;">
+                                    <span class="error-message" id="customCollegeError"></span>
+                                    <small style="color: var(--color-text-secondary); font-size: 0.85rem; margin-top: 0.5rem; display: block;">
+                                        Please enter the full name of your college
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Course, Branch, Year Section -->
+                        <div class="form-section">
+                            <h2 class="form-section-title">Academic Details</h2>
+                            
+                            <div class="form-row form-row-three">
+                                <div class="form-group">
+                                    <label for="course">Course <span class="required">*</span></label>
+                                    <input type="text" id="course" name="course" required placeholder="Course">
+                                    <span class="error-message" id="courseError"></span>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="branch">Branch <span class="required">*</span></label>
+                                    <input type="text" id="branch" name="branch" required placeholder="Branch">
+                                    <span class="error-message" id="branchError"></span>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="year">Year <span class="required">*</span></label>
+                                    <select id="year" name="year" required>
+                                        <option value="">Select Year</option>
+                                        <option value="1st">1st Year</option>
+                                        <option value="2nd">2nd Year</option>
+                                        <option value="3rd">3rd Year</option>
+                                        <option value="4th">4th Year</option>
+                                        <option value="Post Graduate">Post Graduate</option>
+                                    </select>
+                                    <span class="error-message" id="yearError"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact and Email Section -->
+                        <div class="form-section">
+                            <h2 class="form-section-title">Contact Information</h2>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contactNumber">Contact Number <span class="required">*</span></label>
+                                    <input type="tel" id="contactNumber" name="contactNumber" required placeholder="Contact Number" pattern="[0-9]{10}" maxlength="10">
+                                    <span class="error-message" id="contactNumberError"></span>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="emailId">Email Id <span class="required">*</span></label>
+                                    <input type="email" id="emailId" name="emailId" required placeholder="Email">
+                                    <span class="error-message" id="emailIdError"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Event Selection Section -->
+                        <div class="form-section">
+                            <h2 class="form-section-title">Event Selection</h2>
+                            <p class="form-section-subtitle">Registration fee: ₹300 for two events (Both events are required)</p>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="event1">Event 1 <span class="required">*</span></label>
+                                    <select id="event1" name="event1" required>
+                                        <option value="">Select Event 1</option>
+                                        <!-- Events will be populated by JavaScript -->
+                                    </select>
+                                    <span class="error-message" id="event1Error"></span>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="event2">Event 2 <span class="required">*</span></label>
+                                    <select id="event2" name="event2" required>
+                                        <option value="">Select Event 2</option>
+                                        <!-- Events will be populated by JavaScript -->
+                                    </select>
+                                    <span class="error-message" id="event2Error"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Terms and Conditions -->
+                        <div class="form-section">
+                            <div class="form-group checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="terms" name="terms" required>
+                                    <span>I agree to the <a href="#" target="_blank">Terms and Conditions</a> and <a href="#" target="_blank">Privacy Policy</a> <span class="required">*</span></span>
+                                </label>
+                                <span class="error-message" id="termsError"></span>
+                            </div>
+                            
+                            <div class="form-group checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="rules" name="rules" required>
+                                    <span>I have read and understood all the event rules and regulations <span class="required">*</span></span>
+                                </label>
+                                <span class="error-message" id="rulesError"></span>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-large" id="submitBtn">
+                                <span class="btn-text">Submit Registration</span>
+                                <span class="btn-loader" style="display: none;">
+                                    <span class="spinner"></span> Submitting...
+                                </span>
+                            </button>
+                    </div>
+                    </form>
+                    
                     <p class="registration-note fade-in">
-                        <strong>Note:</strong> If you experience any issues with the form, please contact us at <a href="mailto:enigma@united.edu.in">enigma@united.edu.in</a> or call our coordinators.
+                        <strong>Note:</strong> Registration fee is ₹300 for two events. After completing registration on the portal, you will receive a confirmation. If you experience any issues, please contact us at <a href="mailto:ugienigma@united.edu.in">ugienigma@united.edu.in</a> or call our coordinators.
                     </p>
                 </div>
             </div>
@@ -164,15 +328,15 @@
                     <h4>Contact Us</h4>
                     <div class="contact-info">
                         <p><strong>Contact Names & Numbers:</strong></p>
-                        <p>XXX: +91-XXXXXXXXXX</p>
-                        <p>XXX: +91-XXXXXXXXXX</p>
-                        <p>XXX: +91-XXXXXXXXXX</p>
-                        <p>XXX: +91-XXXXXXXXXX</p>
+                        <p><strong>UCER:</strong> Himanshu Mishra</p>
+                        <p>+91 89601 94225</p>
+                        <p><strong>UIT:</strong> Prakhar Agrahari</p>
+                        <p>+91 96160 62606</p>
                         <p><strong>Address:</strong></p>
                         <p>8WV8+Q4H, Nevada Samogar,dairy,United Naini, Naini, Prayagraj, Uttar Pradesh 211010
 </p>
                         <p><strong>Email:</strong></p>
-                        <p>enigma@united.edu.in</p>
+                        <p>ugienigma@united.edu.in</p>
                     </div>
                 </div>
             </div>
@@ -184,60 +348,10 @@
     </footer>
 
 
-    <script src="js/header.js"></script>
-    <script src="js/animations.js"></script>
-    <script src="js/main.js"></script>
-    <script>
-        // Registration iframe loading handler
-        document.addEventListener('DOMContentLoaded', function() {
-            const iframe = document.getElementById('registrationIframe');
-            const loadingDiv = document.getElementById('iframeLoading');
-            const errorDiv = document.getElementById('iframeError');
-            
-            if (!iframe) return;
-            
-            // Show iframe when loaded
-            iframe.addEventListener('load', function() {
-                setTimeout(function() {
-                    loadingDiv.style.display = 'none';
-                    iframe.style.display = 'block';
-                    iframe.style.opacity = '0';
-                    iframe.style.transition = 'opacity 0.5s ease';
-                    setTimeout(function() {
-                        iframe.style.opacity = '1';
-                    }, 50);
-                }, 500);
-            });
-            
-            // Handle iframe load error
-            iframe.addEventListener('error', function() {
-                loadingDiv.style.display = 'none';
-                errorDiv.style.display = 'block';
-            });
-            
-            // Fallback: If iframe doesn't load within 10 seconds, show error
-            setTimeout(function() {
-                if (loadingDiv.style.display !== 'none' && iframe.style.display === 'none') {
-                    loadingDiv.style.display = 'none';
-                    errorDiv.style.display = 'block';
-                }
-            }, 10000);
-            
-            // Try to detect if iframe content loaded (cross-origin limitation)
-            try {
-                // Check if iframe is accessible (will fail for cross-origin)
-                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-                // If we can access it, it's loaded
-                if (iframeDoc) {
-                    loadingDiv.style.display = 'none';
-                    iframe.style.display = 'block';
-                }
-            } catch (e) {
-                // Cross-origin - can't access, rely on load event
-                console.log('Cross-origin iframe, using load event');
-            }
-        });
-    </script>
+    <script src="js/header.js" defer></script>
+    <script src="js/animations.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/version-check.js" defer></script>
 </body>
 </html>
 

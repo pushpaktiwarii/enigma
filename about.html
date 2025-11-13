@@ -2,21 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#0A0A0A">
     <title>About - ENIGMA XIII</title>
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/logo/ENIGMA!_20251018_152032_0000.png">
     <link rel="shortcut icon" type="image/png" href="assets/logo/ENIGMA!_20251018_152032_0000.png">
     <link rel="apple-touch-icon" href="assets/logo/ENIGMA!_20251018_152032_0000.png">
+    
+    <!-- Resource Hints for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/about.css">
-    <link rel="stylesheet" href="css/animations.css">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    
+    <!-- Fonts with optimized loading -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- Critical CSS -->
+    <style>
+        body{background:#0A0A0A;color:#fff;font-family:'Lato',sans-serif;margin:0;padding:0}
+        .header{position:fixed;top:0;left:0;width:100%;z-index:300;transition:transform .3s ease}
+    </style>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/global.css" media="all">
+    <link rel="stylesheet" href="css/header.css" media="all">
+    <link rel="stylesheet" href="css/footer.css" media="all">
+    <link rel="stylesheet" href="css/about.css" media="all">
+    <link rel="stylesheet" href="css/animations.css" media="all">
 </head>
 <body>
     <a href="#main-content" class="skip-to-main">Skip to Main Content</a>
@@ -78,48 +94,208 @@
             </div>
         </section>
 
-        <!-- Core Team Section -->
+        <!-- Meet Our Team Section -->
         <section class="team-section section">
             <div class="container">
                 <h2 class="section-title fade-in">Meet Our Team</h2>
-                <div class="team-grid">
-                    <div class="team-card fade-in">
-                        <div class="team-image grayscale-hover">
-                            <img src="team/udita.jpg" alt="Team Member">
+                
+                        <!-- Cultural Head -->
+                        <div class="team-category">
+                            <h3 class="team-category-title fade-in">Cultural Head</h3>
+                            <div class="team-grid team-grid-single">
+                                <div class="team-card fade-in">
+                                    <div class="team-image">
+                                        <img src="assets/team/cultural head/Dr. Ajay Sharma.webp" alt="Dr. Ajay Sharma" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <div class="team-image-placeholder" style="display: none;">CA</div>
+                                    </div>
+                                    <div class="team-info">
+                                        <h3>Dr. Ajay Sharma</h3>
+                                        <p class="team-role">Cultural Head</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="team-info">
-                            <h3>XXX</h3>
-                            <p class="team-role">General Secretary</p>
+
+                        <!-- Faculty Head -->
+                        <div class="team-category">
+                            <h3 class="team-category-title fade-in">Faculty Head</h3>
+                            <div class="team-grid team-grid-double">
+                                <div class="team-card fade-in">
+                                    <div class="team-image">
+                                        <img src="assets/team/faculty head/Mrs. Shweta Gupta.webp" alt="Shweta Gupta" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <div class="team-image-placeholder" style="display: none;">SG</div>
+                                    </div>
+                                    <div class="team-info">
+                                        <h3>Shweta Gupta</h3>
+                                        <p class="team-role">Faculty Head</p>
+                                    </div>
+                                </div>
+                                <div class="team-card fade-in">
+                                    <div class="team-image">
+                                        <img src="assets/team/faculty head/Mr. Ankit Gupta.webp" alt="Faculty Head" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <div class="team-image-placeholder" style="display: none;">AG</div>
+                                    </div>
+                                    <div class="team-info">
+                                        <h3>Mr. Ankit Gupta</h3>
+                                        <p class="team-role">Faculty Head</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="team-card fade-in">
-                        <div class="team-image grayscale-hover">
-                            <img src="team/sukriti.jpg" alt="Team Member">
+
+                        <!-- Senior Advisor -->
+                        <div class="team-category">
+                            <h3 class="team-category-title fade-in">Senior Advisor</h3>
+                            <div class="team-grid team-grid-advisor">
+                                <div class="team-card fade-in">
+                                    <div class="team-image">
+                                        <img src="assets/team/senior advisor/Gaurav%20srivastava.webp" alt="Gaurav Srivastava" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <div class="team-image-placeholder" style="display: none;">GS</div>
+                                    </div>
+                                    <div class="team-info">
+                                        <h3>Gaurav Srivastava</h3>
+                                        <p class="team-role">Senior Advisor</p>
+                                    </div>
+                                </div>
+                                <div class="team-card fade-in">
+                                    <div class="team-image">
+                                        <img src="assets/team/senior advisor/Utkarsh%20Singh%C2%A0.webp" alt="Utkarsh Singh" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <div class="team-image-placeholder" style="display: none;">US</div>
+                                    </div>
+                                    <div class="team-info">
+                                        <h3>Utkarsh Singh</h3>
+                                        <p class="team-role">Senior Advisor</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="team-info">
-                            <h3>XXX</h3>
-                            <p class="team-role">Coordinator</p>
+
+                        <!-- Core Team -->
+                        <div class="team-category">
+                            <h3 class="team-category-title fade-in">Core Team</h3>
+                            <div class="team-grid team-grid-core">
+                                <div class="team-card fade-in">
+                                    <div class="team-image">
+                                        <img src="assets/team/core/Himanshu Mishra.webp" alt="Himanshu Mishra" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <div class="team-image-placeholder" style="display: none;">HM</div>
+                                    </div>
+                                    <div class="team-info">
+                                        <h3>Himanshu Mishra</h3>
+                                        <p class="team-role">Core Team</p>
+                                    </div>
+                                </div>
+                                <div class="team-card fade-in">
+                                    <div class="team-image">
+                                        <img src="assets/team/core/Prakhar Agrahari.webp" alt="Prakhar Agrahari" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <div class="team-image-placeholder" style="display: none;">PA</div>
+                                    </div>
+                                    <div class="team-info">
+                                        <h3>Prakhar Agrahari</h3>
+                                        <p class="team-role">Core Team</p>
+                                    </div>
+                                </div>
+                                <div class="team-card fade-in">
+                                    <div class="team-image">
+                                        <img src="assets/team/core/Aarya Keshari.webp" alt="Aarya Keshari" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <div class="team-image-placeholder" style="display: none;">AK</div>
+                                    </div>
+                                    <div class="team-info">
+                                        <h3>Aarya Keshari</h3>
+                                        <p class="team-role">Core Team</p>
+                                    </div>
+                                </div>
+                                <div class="team-card fade-in">
+                                    <div class="team-image">
+                                        <img src="assets/team/core/Abhishek Dwivedi.webp" alt="Abhishek Dwivedi" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <div class="team-image-placeholder" style="display: none;">AD</div>
+                                    </div>
+                                    <div class="team-info">
+                                        <h3>Abhishek Dwivedi</h3>
+                                        <p class="team-role">Core Team</p>
+                                    </div>
+                                </div>
+                                <div class="team-card fade-in">
+                                    <div class="team-image">
+                                        <img src="assets/team/core/Amisha Vishwakarma.webp" alt="Amisha Vishwakarma" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <div class="team-image-placeholder" style="display: none;">AV</div>
+                                    </div>
+                                    <div class="team-info">
+                                        <h3>Amisha Vishwakarma</h3>
+                                        <p class="team-role">Core Team</p>
+                                    </div>
+                                </div>
+                                <div class="team-card fade-in">
+                                    <div class="team-image">
+                                        <img src="assets/team/core/Mohd Atib Siddiqui.webp" alt="Mohd Atib Siddiqui" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <div class="team-image-placeholder" style="display: none;">AS</div>
+                                    </div>
+                                    <div class="team-info">
+                                        <h3>Mohd Atib Siddiqui</h3>
+                                        <p class="team-role">Core Team</p>
+                                    </div>
+                                </div>
+                                <div class="team-card fade-in">
+                                    <div class="team-image">
+                                        <img src="assets/team/core/Mahak Kesarwani.webp" alt="Mahak Kesarwani" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <div class="team-image-placeholder" style="display: none;">MK</div>
+                                    </div>
+                                    <div class="team-info">
+                                        <h3>Mahak Kesarwani</h3>
+                                        <p class="team-role">Core Team</p>
+                                    </div>
+                                </div>
+                                <div class="team-card fade-in">
+                                    <div class="team-image">
+                                        <img src="assets/team/core/Prerna Dwivedi.webp" alt="Prerna Dwivedi" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <div class="team-image-placeholder" style="display: none;">PD</div>
+                                    </div>
+                                    <div class="team-info">
+                                        <h3>Prerna Dwivedi</h3>
+                                        <p class="team-role">Core Team</p>
+                                    </div>
+                                </div>
+                                <div class="team-card fade-in">
+                                    <div class="team-image">
+                                        <img src="assets/team/core/Raj Mishra.webp" alt="Raj Mishra" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <div class="team-image-placeholder" style="display: none;">RM</div>
+                                    </div>
+                                    <div class="team-info">
+                                        <h3>Raj Mishra</h3>
+                                        <p class="team-role">Core Team</p>
+                                    </div>
+                                </div>
+                                <div class="team-card fade-in">
+                                    <div class="team-image">
+                                        <img src="assets/team/core/ritika pandey.webp" alt="Ritika Pandey" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <div class="team-image-placeholder" style="display: none;">RP</div>
+                                    </div>
+                                    <div class="team-info">
+                                        <h3>Ritika Pandey</h3>
+                                        <p class="team-role">Core Team</p>
+                                    </div>
+                                </div>
+                                <div class="team-card fade-in">
+                                    <div class="team-image">
+                                        <img src="assets/team/core/Shivaansh Singh.webp" alt="Shivaansh Singh" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <div class="team-image-placeholder" style="display: none;">SS</div>
+                                    </div>
+                                    <div class="team-info">
+                                        <h3>Shivaansh Singh</h3>
+                                        <p class="team-role">Core Team</p>
+                                    </div>
+                                </div>
+                                <div class="team-card fade-in">
+                                    <div class="team-image">
+                                        <img src="assets/team/core/Shivank Gupta.webp" alt="Shivank Gupta" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <div class="team-image-placeholder" style="display: none;">SG</div>
+                                    </div>
+                                    <div class="team-info">
+                                        <h3>Shivank Gupta</h3>
+                                        <p class="team-role">Core Team</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="team-card fade-in">
-                        <div class="team-image grayscale-hover">
-                            <img src="team/saketh.jpg" alt="Team Member">
-                        </div>
-                        <div class="team-info">
-                            <h3>XXX</h3>
-                            <p class="team-role">Coordinator</p>
-                        </div>
-                    </div>
-                    <div class="team-card fade-in">
-                        <div class="team-image grayscale-hover">
-                            <img src="team/sharmila.jpg" alt="Team Member">
-                        </div>
-                        <div class="team-info">
-                            <h3>XXX</h3>
-                            <p class="team-role">Coordinator</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
     </main>
@@ -178,15 +354,15 @@
                     <h4>Contact Us</h4>
                     <div class="contact-info">
                         <p><strong>Contact Names & Numbers:</strong></p>
-                        <p>XXX: +91-XXXXXXXXXX</p>
-                        <p>XXX: +91-XXXXXXXXXX</p>
-                        <p>XXX: +91-XXXXXXXXXX</p>
-                        <p>XXX: +91-XXXXXXXXXX</p>
+                        <p><strong>UCER:</strong> Himanshu Mishra</p>
+                        <p>+91 89601 94225</p>
+                        <p><strong>UIT:</strong> Prakhar Agrahari</p>
+                        <p>+91 96160 62606</p>
                         <p><strong>Address:</strong></p>
                         <p>8WV8+Q4H, Nevada Samogar,dairy,United Naini, Naini, Prayagraj, Uttar Pradesh 211010
 </p>
                         <p><strong>Email:</strong></p>
-                        <p>enigma@united.edu.in</p>
+                        <p>ugienigma@united.edu.in</p>
                     </div>
                 </div>
             </div>
@@ -198,9 +374,10 @@
     </footer>
 
 
-    <script src="js/header.js"></script>
-    <script src="js/animations.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/header.js" defer></script>
+    <script src="js/animations.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/version-check.js" defer></script>
 </body>
 </html>
 

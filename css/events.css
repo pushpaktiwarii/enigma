@@ -1,272 +1,351 @@
-/* ============================================
-   Events Page Styles
-   ============================================ */
+    /* ============================================
+    Events Page Styles
+    ============================================ */
 
-.events-page {
-    background-color: var(--color-bg);
-    min-height: 100vh;
+    .events-page {
+        background-color: var(--color-bg);
+        min-height: 100vh;
+    }
+
+    .page-title {
+        text-align: center;
+        margin-bottom: var(--spacing-xl);
+        font-size: clamp(2.5rem, 5vw, 4rem);
+    }
+
+    /* Filter Buttons */
+    .event-filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-sm);
+        justify-content: center;
+        margin-bottom: var(--spacing-xl);
+        padding: var(--spacing-md);
+        background-color: var(--color-surface);
+        border-radius: var(--radius-lg);
+    }
+
+    .filter-btn {
+        padding: var(--spacing-xs) var(--spacing-md);
+        background-color: transparent;
+        border: 2px solid var(--color-text-secondary);
+        color: var(--color-text-secondary);
+        border-radius: var(--radius-md);
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all var(--transition-fast);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .filter-btn:hover {
+        border-color: var(--color-primary);
+        color: var(--color-primary);
+        transform: translateY(-2px);
+    }
+
+    .filter-btn.active {
+        background-color: var(--color-primary);
+        border-color: var(--color-primary);
+        color: var(--color-bg);
+    }
+
+    /* Events Grid */
+    .events-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: var(--spacing-lg);
+    }
+
+    .event-card {
+        background-color: var(--color-surface);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        transition: transform 0.2s ease;
+        display: block;
+    }
+
+    .event-card.visible {
+        display: block;
+    }
+
+    .event-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .event-image {
+        width: 100%;
+        height: 180px;
+        overflow: hidden;
+        position: relative;
+        border-radius: 12px;
+        z-index: 0;
+    }
+
+    /* Remove category-based background images - using actual event images instead */
+    .event-image::after {
+        display: none;
+    }
+
+    /* Event overlay - similar to home page */
+    .event-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.3) 100%);
+        z-index: 1;
+        transition: background var(--transition-normal);
+        border-radius: 12px;
+        pointer-events: none;
+    }
+
+    .event-card:hover .event-overlay {
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.2) 100%);
+    }
+
+    /* Event images - using CSS backgrounds for online events */
+    .event-image {
+        background: #1a1a1a;
+        position: relative;
+        overflow: hidden;
+        min-height: 180px;
+    }
+
+    /* All Events - Unique matching background images */
+    /* Literary Events */
+    .event-card[data-event="open-mic"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    .event-card[data-event="kbc-quiz"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    /* Theatre Events */
+    .event-card[data-event="dramatics"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('https://images.unsplash.com/photo-1503095396549-807759245b35?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    /* Sports Events */
+    .event-card[data-event="chess"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    .event-card[data-event="power-lifting"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    /* Creative Events */
+    .event-card[data-event="face-painting"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    .event-card[data-event="canvas-painting"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    .event-card[data-event="mehndi-art"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('https://images.unsplash.com/photo-1606800053563-1c1c0a1a0a0a?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    .event-card[data-event="rangoli"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    .event-card[data-event="mandala-art"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('https://images.unsplash.com/photo-1578301978018-3005759f48f7?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    .event-card[data-event="roadies"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    .event-card[data-event="treasure-hunt"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    /* Online Events */
+    .event-card[data-event="bug-brawl"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.08) 0%, rgba(255, 0, 255, 0.08) 100%),
+            url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    .event-card[data-event="web-die"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.08) 0%, rgba(255, 0, 255, 0.08) 100%),
+            url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    .event-card[data-event="gamers-arena"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.08) 0%, rgba(255, 0, 255, 0.08) 100%),
+            url('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    /* Fashion Events */
+    .event-card[data-event="fashion-show"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    /* Dance Events */
+    .event-card[data-event="dance"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    /* Music Events */
+    .event-card[data-event="singing"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    .event-card[data-event="instrumental"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    /* Business Events */
+    .event-card[data-event="shark-tank"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    /* Photo & Film Events */
+    .event-card[data-event="framefest"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+/* Hover effect for online event images */
+.event-card[data-online="true"]:hover .event-image {
+    transform: scale(1.02);
+    filter: brightness(1.1);
 }
 
-.page-title {
-    text-align: center;
-    margin-bottom: var(--spacing-xl);
-    font-size: clamp(2.5rem, 5vw, 4rem);
+.event-card[data-online="true"] .event-image {
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-/* Filter Buttons */
-.event-filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-sm);
-    justify-content: center;
-    margin-bottom: var(--spacing-xl);
-    padding: var(--spacing-md);
-    background-color: var(--color-surface);
-    border-radius: var(--radius-lg);
-}
-
-.filter-btn {
-    padding: var(--spacing-xs) var(--spacing-md);
-    background-color: transparent;
-    border: 2px solid var(--color-text-secondary);
-    color: var(--color-text-secondary);
-    border-radius: var(--radius-md);
-    font-family: var(--font-heading);
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all var(--transition-fast);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.filter-btn:hover {
-    border-color: var(--color-primary);
-    color: var(--color-primary);
-    transform: translateY(-2px);
-}
-
-.filter-btn.active {
-    background-color: var(--color-primary);
-    border-color: var(--color-primary);
-    color: var(--color-bg);
-}
-
-/* Events Grid */
-.events-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: var(--spacing-lg);
-}
-
-.event-card {
-    background-color: var(--color-surface);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    transition: transform var(--transition-normal);
-    display: block;
-}
-
-.event-card.visible {
-    display: block;
-}
-
-.event-card:hover {
-    transform: translateY(-10px);
-}
-
-.event-image {
-    width: 100%;
-    height: 250px;
-    overflow: hidden;
-    position: relative;
-    background-color: var(--color-surface);
-}
-
-/* Category-specific background textures */
-.event-card[data-category="dance"] .event-image {
-    background: 
-        radial-gradient(circle at 20% 50%, rgba(255, 0, 255, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 80% 50%, rgba(0, 255, 255, 0.2) 0%, transparent 50%),
-        repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(0, 255, 255, 0.08) 8px, rgba(0, 255, 255, 0.08) 16px),
-        linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
-    background-size: 200% 200%, 200% 200%, 32px 32px, 100% 100%;
-    animation: eventDancePattern 8s ease-in-out infinite;
-}
-
-.event-card[data-category="music"] .event-image {
-    background: 
-        radial-gradient(circle at 30% 30%, rgba(255, 0, 255, 0.25) 0%, transparent 40%),
-        radial-gradient(circle at 70% 70%, rgba(0, 255, 255, 0.25) 0%, transparent 40%),
-        repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(0, 255, 255, 0.08) 8deg, transparent 16deg),
-        linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
-    background-size: 150% 150%, 150% 150%, 100% 100%, 100% 100%;
-    animation: eventMusicPattern 10s linear infinite;
-}
-
-.event-card[data-category="creative"] .event-image {
-    background: 
-        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 0, 255, 0.08) 2px, rgba(255, 0, 255, 0.08) 4px),
-        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0, 255, 255, 0.08) 2px, rgba(0, 255, 255, 0.08) 4px),
-        radial-gradient(circle at center, rgba(255, 0, 255, 0.15) 0%, transparent 70%),
-        linear-gradient(135deg, #ff00ff 0%, #00ffff 50%, #ff00ff 100%);
-    background-size: 24px 24px, 24px 24px, 100% 100%, 100% 100%;
-}
-
-.event-card[data-category="theatre"] .event-image {
-    background: 
-        linear-gradient(45deg, transparent 30%, rgba(0, 255, 255, 0.15) 50%, transparent 70%),
-        linear-gradient(-45deg, transparent 30%, rgba(255, 0, 255, 0.15) 50%, transparent 70%),
-        repeating-linear-gradient(90deg, rgba(0, 255, 255, 0.08) 0px, transparent 1px, transparent 16px, rgba(255, 0, 255, 0.08) 17px),
-        linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
-    background-size: 200% 200%, 200% 200%, 32px 100%, 100% 100%;
-    animation: eventTheatrePattern 6s ease-in-out infinite;
-}
-
-.event-card[data-category="fashion"] .event-image {
-    background: 
-        radial-gradient(ellipse at top, rgba(255, 0, 255, 0.25) 0%, transparent 50%),
-        radial-gradient(ellipse at bottom, rgba(0, 255, 255, 0.25) 0%, transparent 50%),
-        repeating-linear-gradient(135deg, rgba(255, 0, 255, 0.08) 0px, transparent 2px, transparent 8px, rgba(0, 255, 255, 0.08) 10px),
-        linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
-    background-size: 100% 60%, 100% 60%, 16px 16px, 100% 100%;
-}
-
-.event-card[data-category="gaming"] .event-image {
-    background: 
-        repeating-conic-gradient(from 0deg at 50% 50%, rgba(0, 255, 255, 0.15) 0deg, transparent 4deg, rgba(255, 0, 255, 0.15) 8deg, transparent 12deg),
-        repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(0, 255, 255, 0.08) 4px, rgba(0, 255, 255, 0.08) 5px),
-        linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
-    background-size: 100% 100%, 12px 12px, 100% 100%;
-    animation: eventGamingPattern 4s linear infinite;
-}
-
-.event-card[data-category="literary"] .event-image {
-    background: 
-        repeating-linear-gradient(0deg, rgba(255, 0, 255, 0.08) 0px, transparent 1px, transparent 6px, rgba(0, 255, 255, 0.08) 7px),
-        repeating-linear-gradient(90deg, rgba(0, 255, 255, 0.08) 0px, transparent 1px, transparent 6px, rgba(255, 0, 255, 0.08) 7px),
-        radial-gradient(circle at 25% 25%, rgba(255, 0, 255, 0.15) 0%, transparent 30%),
-        radial-gradient(circle at 75% 75%, rgba(0, 255, 255, 0.15) 0%, transparent 30%),
-        linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
-    background-size: 14px 14px, 14px 14px, 50% 50%, 50% 50%, 100% 100%;
-}
-
-.event-card[data-category="sports"] .event-image {
-    background: 
-        repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(0, 255, 255, 0.12) 8px, rgba(0, 255, 255, 0.12) 9px),
-        repeating-linear-gradient(-45deg, transparent, transparent 8px, rgba(255, 0, 255, 0.12) 8px, rgba(255, 0, 255, 0.12) 9px),
-        radial-gradient(circle at center, rgba(0, 255, 255, 0.15) 0%, transparent 60%),
-        linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
-    background-size: 24px 24px, 24px 24px, 100% 100%, 100% 100%;
-    animation: eventSportsPattern 5s ease-in-out infinite;
-}
-
-.event-card[data-category="photo-film"] .event-image {
-    background: 
-        repeating-linear-gradient(0deg, rgba(0, 255, 255, 0.08) 0px, transparent 2px, transparent 3px),
-        repeating-linear-gradient(90deg, rgba(255, 0, 255, 0.08) 0px, transparent 2px, transparent 3px),
-        radial-gradient(circle at 20% 20%, rgba(255, 0, 255, 0.2) 0%, transparent 40%),
-        radial-gradient(circle at 80% 80%, rgba(0, 255, 255, 0.2) 0%, transparent 40%),
-        linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
-    background-size: 6px 6px, 6px 6px, 60% 60%, 60% 60%, 100% 100%;
-}
-
-.event-card[data-category="business"] .event-image {
-    background: 
-        repeating-linear-gradient(45deg, rgba(0, 255, 255, 0.1) 0px, transparent 1px, transparent 10px),
-        repeating-linear-gradient(-45deg, rgba(255, 0, 255, 0.1) 0px, transparent 1px, transparent 10px),
-        radial-gradient(circle at center, rgba(0, 255, 255, 0.2) 0%, transparent 50%),
-        linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
-    background-size: 20px 20px, 20px 20px, 100% 100%, 100% 100%;
-}
-
-/* Loading placeholder */
-.event-image::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, 
-        rgba(17, 17, 17, 0.6) 0%, 
-        rgba(17, 17, 17, 0.4) 50%, 
-        rgba(17, 17, 17, 0.6) 100%);
-    background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;
-    z-index: 1;
-    opacity: 1;
-    transition: opacity 0.3s ease;
-}
-
-/* Hide shimmer when image is loaded */
-.event-image:has(img.loaded)::before,
-.event-image:has(img[src]:not([src=""]))::before {
-    opacity: 0;
-    pointer-events: none;
-    display: none;
-}
-
-/* Fallback for browsers that don't support :has() - use JavaScript class */
-.event-image.image-loaded::before {
-    opacity: 0;
-    pointer-events: none;
-    display: none;
-}
-
-.event-image img.loaded {
-    z-index: 3;
-}
-
-@keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-}
-
-/* Event pattern animations */
-@keyframes eventDancePattern {
-    0%, 100% { background-position: 0% 0%, 100% 100%, 0 0, 0 0; }
-    50% { background-position: 100% 100%, 0% 0%, 16px 16px, 0 0; }
-}
-
-@keyframes eventMusicPattern {
-    0% { background-position: 0% 0%, 100% 100%, 0deg; }
-    100% { background-position: 100% 100%, 0% 0%, 360deg; }
-}
-
-@keyframes eventTheatrePattern {
-    0%, 100% { background-position: 0% 0%, 100% 100%, 0 0, 0 0; }
-    50% { background-position: 100% 100%, 0% 0%, 32px 0, 0 0; }
-}
-
-@keyframes eventGamingPattern {
-    0% { background-position: 0deg, 0 0, 0 0; }
-    100% { background-position: 360deg, 12px 12px, 0 0; }
-}
-
-@keyframes eventSportsPattern {
-    0%, 100% { background-position: 0 0, 0 0, center, 0 0; }
-    50% { background-position: 24px 24px, -24px -24px, center, 0 0; }
-}
-
-.event-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform var(--transition-normal), opacity 0.3s ease;
-    position: relative;
-    z-index: 2;
-    opacity: 0;
-}
-
-.event-image img.loaded,
-.event-image img[src]:not([src=""]) {
-    opacity: 1;
-}
-
-.event-card:hover .event-image img {
-    transform: scale(1.1);
-}
 
 .event-info {
     padding: var(--spacing-md);
@@ -301,6 +380,10 @@
 
 .event-mode.offline {
     background-color: #4CAF50;
+}
+
+.event-mode.online {
+    background-color: #2196F3;
 }
 
 .event-fee {
@@ -370,7 +453,7 @@
     }
 
     .event-image {
-        height: 200px;
+        height: 180px;
     }
 
     .event-info {
