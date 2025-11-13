@@ -14,7 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.preventDefault();
                 const target = document.querySelector(href);
                 if (target) {
-                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const header = document.querySelector('.header');
+                    const headerHeight = header ? header.offsetHeight : 0;
                     const targetPosition = target.offsetTop - headerHeight;
                     
                     window.scrollTo({
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Optimized Hero Video Loading - Only loads when needed
     const heroVideo = document.querySelector('.hero-video');
+    const heroBackground = document.querySelector('.hero-background');
     const fallback = document.querySelector('.hero-fallback');
     let videoLoaded = false;
     let videoLoadAttempted = false;
@@ -36,6 +38,18 @@ document.addEventListener('DOMContentLoaded', function() {
     function shouldLoadVideo() {
         // Check if on mobile (save bandwidth)
         if (window.innerWidth < 768) {
+            // Show poster image on mobile instead of video
+            if (heroVideo && heroVideo.poster) {
+                // Hide video element
+                heroVideo.style.display = 'none';
+                // Set poster as background on hero-background
+                if (heroBackground) {
+                    heroBackground.style.backgroundImage = `url(${heroVideo.poster})`;
+                    heroBackground.style.backgroundSize = 'cover';
+                    heroBackground.style.backgroundPosition = 'center';
+                    heroBackground.style.backgroundRepeat = 'no-repeat';
+                }
+            }
             return false; // Don't load video on mobile
         }
         
@@ -63,6 +77,21 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (!shouldLoadVideo()) {
             console.log('Skipping video load - mobile or slow connection');
+            // On mobile, ensure poster image is visible as background
+            if (heroVideo && heroVideo.poster && heroBackground) {
+                // Preload poster image
+                const posterImg = new Image();
+                posterImg.src = heroVideo.poster;
+                posterImg.onload = function() {
+                    heroBackground.style.backgroundImage = `url(${heroVideo.poster})`;
+                    heroBackground.style.backgroundSize = 'cover';
+                    heroBackground.style.backgroundPosition = 'center';
+                    heroBackground.style.backgroundRepeat = 'no-repeat';
+                };
+                posterImg.onerror = function() {
+                    console.log('Poster image failed to load');
+                };
+            }
             if (fallback) {
                 fallback.classList.add('show-fallback');
             }

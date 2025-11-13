@@ -36,6 +36,25 @@
     display: block;
 }
 
+/* Mobile: Show poster as background when video doesn't load */
+@media (max-width: 768px) {
+    .hero-background {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    
+    /* Use poster attribute as background on mobile */
+    .hero-video {
+        display: none;
+    }
+    
+    /* Ensure hero section has a background even before JS loads */
+    .hero-section {
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
+    }
+}
+
 .hero-overlay {
     position: absolute;
     top: 0;
@@ -591,6 +610,292 @@
 .schedule-chief-guest .schedule-singer-name {
     color: rgba(255, 215, 0, 0.9);
     font-weight: 600;
+}
+
+/* Special Guests Section */
+.guests-section {
+    background-color: var(--color-bg);
+    padding: var(--spacing-xl) 0;
+}
+
+.guest-day-container {
+    margin-bottom: var(--spacing-lg);
+}
+
+.guest-day-container:last-child {
+    margin-bottom: 0;
+}
+
+/* Removed guest-day-header as dates are now in cards */
+
+.guests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+    justify-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.guest-card {
+    background-color: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+    border: 2px solid rgba(0, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 320px;
+    position: relative;
+    overflow: hidden;
+}
+
+.guest-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.guest-card:hover::before {
+    opacity: 1;
+}
+
+.guest-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--color-primary);
+    box-shadow: 0 15px 50px rgba(0, 255, 255, 0.25);
+}
+
+.guest-label {
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.guest-image {
+    width: 100%;
+    max-width: 200px;
+    aspect-ratio: 1;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 3px solid var(--color-primary);
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.3) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+    flex-shrink: 0;
+}
+
+.guest-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+.guest-placeholder {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.guest-name {
+    color: var(--color-text-primary);
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: var(--spacing-xs);
+}
+
+.guest-date {
+    color: var(--color-text-secondary);
+    font-size: 0.85rem;
+    font-weight: 400;
+    text-align: center;
+    margin-top: var(--spacing-xs);
+    opacity: 0.8;
+}
+
+.guest-venue-small {
+    color: var(--color-text-secondary);
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-align: center;
+    margin-top: var(--spacing-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0.7;
+}
+
+.guest-chief .guest-image {
+    border-color: rgba(255, 215, 0, 0.8);
+    border-width: 3px;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+}
+
+.guest-chief .guest-label {
+    color: rgba(255, 215, 0, 0.9);
+    font-weight: 700;
+}
+
+.guest-chief .guest-name {
+    color: rgba(255, 215, 0, 0.9);
+    font-weight: 700;
+}
+
+.guest-chief .guest-date {
+    color: rgba(255, 215, 0, 0.7);
+}
+
+.guest-chief .guest-venue-small {
+    color: rgba(255, 215, 0, 0.6);
+}
+
+.guest-chief:hover {
+    box-shadow: 0 10px 40px rgba(255, 215, 0, 0.3);
+    border-color: rgba(255, 215, 0, 0.5);
+}
+
+/* Singer styling - same as chief guest (yellow) */
+.guest-singer .guest-image {
+    border-color: rgba(255, 215, 0, 0.8);
+    border-width: 3px;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+}
+
+.guest-singer .guest-label {
+    color: rgba(255, 215, 0, 0.9);
+    font-weight: 700;
+}
+
+.guest-singer .guest-name {
+    color: rgba(255, 215, 0, 0.9);
+    font-weight: 700;
+}
+
+.guest-singer .guest-date {
+    color: rgba(255, 215, 0, 0.7);
+}
+
+.guest-singer .guest-venue-small {
+    color: rgba(255, 215, 0, 0.6);
+}
+
+.guest-singer:hover {
+    box-shadow: 0 10px 40px rgba(255, 215, 0, 0.3);
+    border-color: rgba(255, 215, 0, 0.5);
+}
+
+/* Responsive Design for Guests Section */
+@media (max-width: 768px) {
+    .guests-section {
+        padding: var(--spacing-lg) 0;
+    }
+
+    .guests-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+        padding: 0 var(--spacing-sm);
+    }
+
+    .guest-card {
+        max-width: 100%;
+        padding: var(--spacing-md);
+        width: 100%;
+    }
+
+    .guest-image {
+        max-width: 200px;
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+    }
+
+    .guest-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .guest-date {
+        font-size: 0.8rem;
+    }
+
+    .guest-venue-small {
+        font-size: 0.7rem;
+    }
+
+    .guest-name {
+        font-size: 1.1rem;
+        word-wrap: break-word;
+        padding: 0 var(--spacing-xs);
+    }
+
+    .guest-label {
+        font-size: 0.85rem;
+    }
+
+    .guest-date {
+        font-size: 0.75rem;
+    }
+
+    .guest-venue-small {
+        font-size: 0.65rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .guests-section {
+        padding: var(--spacing-md) 0;
+    }
+
+    .guest-card {
+        padding: var(--spacing-md);
+        max-width: 100%;
+    }
+
+    .guest-image {
+        max-width: 180px;
+        width: 180px;
+        height: 180px;
+    }
+
+    .guest-name {
+        font-size: 1rem;
+        line-height: 1.3;
+    }
+
+    .guest-date {
+        font-size: 0.7rem;
+    }
+
+    .guest-venue-small {
+        font-size: 0.65rem;
+    }
+
+    .guest-placeholder {
+        font-size: 2.5rem;
+    }
 }
 
 
@@ -1226,7 +1531,26 @@
     }
 
     .schedule-singer-image {
-        max-width: 120px;
+        max-width: 100px;
+        width: 100px;
+        height: 100px;
+    }
+
+    .schedule-singer-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .schedule-singer-name {
+        font-size: 0.75rem;
+        line-height: 1.2;
+        word-wrap: break-word;
+    }
+
+    .schedule-singer-label {
+        font-size: 0.7rem;
     }
 
     .schedule-event-venue {
@@ -1234,7 +1558,9 @@
     }
 
     .singer-name {
-        font-size: 1.2rem;
+        font-size: 1rem;
+        word-wrap: break-word;
+        text-align: center;
     }
 
     .singer-image {
@@ -1242,13 +1568,21 @@
         height: 100px;
     }
 
+    .singer-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
     .singer-placeholder {
         font-size: 2.5rem;
     }
 
     .singers-list {
-        gap: var(--spacing-lg);
+        gap: var(--spacing-md);
         flex-direction: row;
+        flex-wrap: wrap;
     }
 
     .concert-main-title {
@@ -1456,12 +1790,24 @@
 @media (max-width: 768px) {
     .hero-section {
         height: 100vh;
-        min-height: 600px;
+        min-height: 500px;
+        max-height: 100vh;
         padding: var(--spacing-md);
+        position: relative;
+    }
+
+    .hero-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
     }
 
     .hero-content {
         padding: var(--spacing-md);
+        position: relative;
+        z-index: 2;
     }
 
     .hero-title {
@@ -1476,9 +1822,22 @@
         font-size: clamp(0.9rem, 3vw, 1.2rem);
     }
 
-    /* Keep video on mobile too, but make it optional */
+    /* On mobile, show poster as background */
     .hero-video {
         display: block;
+        object-fit: cover;
+    }
+
+    /* Ensure hero section is visible even without video */
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 100%);
+        z-index: 1;
     }
 
     /* Only show fallback if video really doesn't work */

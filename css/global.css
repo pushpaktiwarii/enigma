@@ -67,6 +67,26 @@ img, video {
     display: block;
 }
 
+/* Mobile image optimization */
+@media (max-width: 768px) {
+    img {
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+        display: block;
+    }
+    
+    /* Prevent image overflow on mobile */
+    .container img,
+    section img {
+        max-width: 100%;
+        width: auto;
+    }
+}
+
 html {
     scroll-behavior: smooth;
     font-size: 16px;

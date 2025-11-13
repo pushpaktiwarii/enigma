@@ -21,6 +21,20 @@
     <!-- Fonts with optimized loading -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
+    <!-- Fallback for fonts if onload fails -->
+    <script>
+        // Fallback font loading for mobile browsers
+        (function() {
+            var fontLink = document.querySelector('link[href*="fonts.googleapis.com"]');
+            if (fontLink && fontLink.media === 'print') {
+                setTimeout(function() {
+                    if (fontLink.media === 'print') {
+                        fontLink.media = 'all';
+                    }
+                }, 100);
+            }
+        })();
+    </script>
     
     <!-- Critical CSS - Inline for faster rendering -->
     <style>
@@ -29,6 +43,11 @@
         .header{position:fixed;top:0;left:0;width:100%;z-index:300;transition:transform .3s ease}
         .skip-to-main{position:absolute;left:-9999px;z-index:9999}
         .skip-to-main:focus{left:50%;top:20px;transform:translateX(-50%);padding:10px 20px;background:#00FFFF;color:#000;text-decoration:none;border-radius:4px}
+        /* Mobile hero background - show poster immediately */
+        @media (max-width:768px){
+            .hero-background{background-image:url('assets/enigma xii/1000079694.webp');background-size:cover;background-position:center;background-repeat:no-repeat}
+            .hero-video{display:none}
+        }
     </style>
     
     <!-- Stylesheets -->
@@ -332,38 +351,57 @@
                             </div>
                             <div class="schedule-event schedule-event-concert">
                                 <span class="event-name">Grand Concert</span>
-                                <span class="event-venue">UIT Auditorium</span>
+                                <span class="event-venue">UIT Ground</span>
                             </div>
-                            <div class="schedule-singers-container">
-                                <div class="schedule-singer-box">
-                                    <span class="schedule-singer-label">Singer</span>
-                                    <div class="schedule-singer-image">
-                                        <img src="assets/singer/Jassi gill.webp" alt="Jassie Gill" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                        <div class="schedule-singer-placeholder" style="display: none;">JG</div>
-                                    </div>
-                                    <span class="schedule-singer-name">Jassie Gill</span>
-                                </div>
-                                <div class="schedule-singer-box schedule-chief-guest">
-                                    <span class="schedule-singer-label">Chief Guest</span>
-                                    <div class="schedule-singer-image">
-                                        <img src="assets/chief guest/Mohammad Misbahuddin Faruqui.webp" alt="Mohammad Misbahuddin Faruqui" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                        <div class="schedule-singer-placeholder" style="display: none;">MMF</div>
-                                    </div>
-                                    <span class="schedule-singer-name">Mohammad Misbahuddin Faruqui</span>
-                                </div>
-                                <div class="schedule-singer-box">
-                                    <span class="schedule-singer-label">Singer</span>
-                                    <div class="schedule-singer-image">
-                                        <img src="assets/singer/Babble Rai.webp" alt="Babbal Rai" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                        <div class="schedule-singer-placeholder" style="display: none;">BR</div>
-                                    </div>
-                                    <span class="schedule-singer-name">Babbal Rai</span>
-                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Special Guests Section -->
+        <section class="guests-section section">
+            <div class="container">
+                <h2 class="section-title fade-in">SPECIAL GUESTS</h2>
+                
+                <!-- Chief Guest - Day 1 -->
+                <div class="guest-day-container fade-in">
+                    <div class="guests-grid">
+                        <div class="guest-card guest-chief">
+                            <div class="guest-label">Chief Guest</div>
+                            <div class="guest-image">
+                                <img src="assets/chief guest/Mohammad Misbahuddin Faruqui.webp" alt="Mohammad Misbahuddin Faruqui" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="guest-placeholder" style="display: none;">MMF</div>
                             </div>
-                            <div class="schedule-event schedule-event-venue">
-                                <span class="event-name">Venue</span>
-                                <span class="event-venue">UIT Auditorium</span>
+                            <div class="guest-name">Mohammad Misbahuddin Faruqui</div>
+                            <div class="guest-date">Day 1 - November 21, 2025</div>
+                            <div class="guest-venue-small">UCER</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Singers - Day 2 -->
+                <div class="guest-day-container fade-in">
+                    <div class="guests-grid">
+                        <div class="guest-card guest-singer">
+                            <div class="guest-label">Singer</div>
+                            <div class="guest-image">
+                                <img src="assets/singer/Jassi gill.webp" alt="Jassie Gill" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="guest-placeholder" style="display: none;">JG</div>
                             </div>
+                            <div class="guest-name">Jassie Gill</div>
+                            <div class="guest-date">Day 2 - November 22, 2025</div>
+                            <div class="guest-venue-small">UIT Ground</div>
+                        </div>
+                        <div class="guest-card guest-singer">
+                            <div class="guest-label">Singer</div>
+                            <div class="guest-image">
+                                <img src="assets/singer/Babble Rai.webp" alt="Babbal Rai" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="guest-placeholder" style="display: none;">BR</div>
+                            </div>
+                            <div class="guest-name">Babbal Rai</div>
+                            <div class="guest-date">Day 2 - November 22, 2025</div>
+                            <div class="guest-venue-small">UIT Ground</div>
                         </div>
                     </div>
                 </div>
