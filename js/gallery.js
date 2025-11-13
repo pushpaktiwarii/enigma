@@ -10,10 +10,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // Numbered images starting from 1 (converted from JPG to WebP)
         { type: 'image', src: '1.webp' },
         { type: 'image', src: '2.webp' },
-        { type: 'image', src: '3.webp' },
+        { type: 'image', src: '3.webp' }, // Note: Convert 3.jpeg to 3.webp
         { type: 'image', src: '4.webp' },
-        { type: 'image', src: '5.webp' },
-        { type: 'image', src: '6.webp' },
+        { type: 'image', src: '5.webp' }, // Note: Convert 5.jpeg to 5.webp
+        { type: 'video', src: '6.mp4' }, // Video file
         { type: 'image', src: '7.webp' },
         { type: 'image', src: '8.webp' },
         { type: 'image', src: '9.webp' },
@@ -26,6 +26,11 @@ document.addEventListener('DOMContentLoaded', function() {
         { type: 'image', src: '16.webp' },
         { type: 'image', src: '17.webp' },
         { type: 'image', src: '18.webp' },
+        { type: 'image', src: '19.webp' }, // Note: Convert 19.jpeg to 19.webp
+        { type: 'image', src: '20.webp' }, // Note: Convert 20.jpeg to 20.webp
+        { type: 'image', src: '23.webp' },
+        { type: 'image', src: '24.webp' },
+        { type: 'image', src: '25.webp' },
         // Additional existing WebP images
         { type: 'image', src: '1000079688.webp' },
         { type: 'image', src: '1000079689.webp' },
@@ -64,22 +69,85 @@ document.addEventListener('DOMContentLoaded', function() {
         galleryItem.className = 'gallery-item';
         galleryItem.setAttribute('data-index', index);
         
-        // Only images now - videos removed
+        // Check if it's a video file
+        if (item.type === 'video' || item.src.endsWith('.mp4')) {
+            galleryItem.classList.add('video-item');
+            
+            // Create placeholder for video
+            const placeholder = createPlaceholder();
+            galleryItem.appendChild(placeholder);
+            
+            const video = document.createElement('video');
+            video.setAttribute('data-src', `assets/enigma xii/${item.src}`);
+            video.muted = true;
+            video.loop = true;
+            video.playsInline = true;
+            video.setAttribute('playsinline', '');
+            video.setAttribute('webkit-playsinline', '');
+            video.controls = false;
+            video.preload = 'metadata';
+            video.style.display = 'none';
+            video.style.width = '100%';
+            video.style.height = '100%';
+            video.style.objectFit = 'cover';
+            
+            video.onerror = function() {
+                console.log('Failed to load video:', this.src);
+                this.style.display = 'none';
+                const placeholder = galleryItem.querySelector('.gallery-placeholder');
+                if (placeholder) {
+                    placeholder.innerHTML = '<div class="error-message">Failed to load video</div>';
+                }
+            };
+            
+            video.onloadeddata = function() {
+                this.style.display = 'block';
+                const placeholder = galleryItem.querySelector('.gallery-placeholder');
+                if (placeholder) {
+                    placeholder.style.opacity = '0';
+                    setTimeout(() => {
+                        placeholder.style.display = 'none';
+                    }, 200);
+                }
+                galleryItem.classList.add('loaded');
+            };
+            
+            video.oncanplay = function() {
+                // Try to play video if autoplay is allowed
+                this.play().catch(function(error) {
+                    console.log('Video autoplay prevented:', error);
+                });
+            };
+            
+            galleryItem.appendChild(video);
+            return galleryItem;
+        }
+        
         // Create placeholder first
         const placeholder = createPlaceholder();
         galleryItem.appendChild(placeholder);
         
         // Create image with data-src for lazy loading
         const img = document.createElement('img');
-        img.setAttribute('data-src', `assets/enigma xii/${item.src}`);
+        const srcPath = `assets/enigma xii/${item.src}`;
+        img.setAttribute('data-src', srcPath);
         img.alt = 'ENIGMA XII Gallery';
         img.style.display = 'none';
         img.onerror = function() {
-            console.log('Failed to load image:', this.src);
-            this.style.display = 'none';
-            const placeholder = galleryItem.querySelector('.gallery-placeholder');
-            if (placeholder) {
-                placeholder.innerHTML = '<div class="error-message">Failed to load</div>';
+            // If WebP fails, try JPG fallback
+            const webpSrc = this.getAttribute('data-src');
+            if (webpSrc && webpSrc.endsWith('.webp')) {
+                const jpgSrc = webpSrc.replace('.webp', '.jpeg');
+                console.log('WebP failed, trying JPG:', jpgSrc);
+                this.setAttribute('data-src', jpgSrc);
+                this.src = jpgSrc;
+            } else {
+                console.log('Failed to load image:', this.src);
+                this.style.display = 'none';
+                const placeholder = galleryItem.querySelector('.gallery-placeholder');
+                if (placeholder) {
+                    placeholder.innerHTML = '<div class="error-message">Failed to load</div>';
+                }
             }
         };
         img.onload = function() {
@@ -105,13 +173,15 @@ document.addEventListener('DOMContentLoaded', function() {
         galleryGrid.appendChild(galleryItem);
     });
     
-    // Preload first 6 visible images immediately
+    // Preload first 6 visible images/videos immediately
     const allGalleryItems = galleryGrid.querySelectorAll('.gallery-item');
     const preloadCount = Math.min(6, allGalleryItems.length);
     
     for (let i = 0; i < preloadCount; i++) {
         const galleryItem = allGalleryItems[i];
         const img = galleryItem.querySelector('img[data-src]');
+        const video = galleryItem.querySelector('video[data-src]');
+        
         if (img) {
             const dataSrc = img.getAttribute('data-src');
             if (dataSrc) {
@@ -130,14 +200,32 @@ document.addEventListener('DOMContentLoaded', function() {
                     galleryItem.classList.add('loaded');
                 };
                 newImg.onerror = function() {
-                    img.removeAttribute('data-src');
-                    img.style.display = 'none';
-                    const placeholder = galleryItem.querySelector('.gallery-placeholder');
-                    if (placeholder) {
-                        placeholder.innerHTML = '<div class="error-message">Failed to load</div>';
+                    // Try JPG fallback if WebP fails
+                    if (dataSrc.endsWith('.webp')) {
+                        const jpgSrc = dataSrc.replace('.webp', '.jpeg');
+                        img.setAttribute('data-src', jpgSrc);
+                        newImg.src = jpgSrc;
+                    } else {
+                        img.removeAttribute('data-src');
+                        img.style.display = 'none';
+                        const placeholder = galleryItem.querySelector('.gallery-placeholder');
+                        if (placeholder) {
+                            placeholder.innerHTML = '<div class="error-message">Failed to load</div>';
+                        }
                     }
                 };
                 newImg.src = dataSrc;
+            }
+        } else if (video) {
+            const dataSrc = video.getAttribute('data-src');
+            if (dataSrc) {
+                video.src = dataSrc;
+                video.load();
+                video.removeAttribute('data-src');
+                // Try to play video
+                video.play().catch(function(error) {
+                    console.log('Video autoplay prevented:', error);
+                });
             }
         }
     }
@@ -148,6 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (entry.isIntersecting) {
                 const galleryItem = entry.target;
                 const img = galleryItem.querySelector('img[data-src]');
+                const video = galleryItem.querySelector('video[data-src]');
                 
                 if (img) {
                     // Load image
@@ -168,14 +257,34 @@ document.addEventListener('DOMContentLoaded', function() {
                             galleryItem.classList.add('loaded');
                         };
                         newImg.onerror = function() {
-                            img.removeAttribute('data-src');
-                            img.style.display = 'none';
-                            const placeholder = galleryItem.querySelector('.gallery-placeholder');
-                            if (placeholder) {
-                                placeholder.innerHTML = '<div class="error-message">Failed to load</div>';
+                            // Try JPG fallback if WebP fails
+                            if (dataSrc.endsWith('.webp')) {
+                                const jpgSrc = dataSrc.replace('.webp', '.jpeg');
+                                img.setAttribute('data-src', jpgSrc);
+                                newImg.src = jpgSrc;
+                            } else {
+                                img.removeAttribute('data-src');
+                                img.style.display = 'none';
+                                const placeholder = galleryItem.querySelector('.gallery-placeholder');
+                                if (placeholder) {
+                                    placeholder.innerHTML = '<div class="error-message">Failed to load</div>';
+                                }
                             }
                         };
                         newImg.src = dataSrc;
+                    }
+                    observer.unobserve(galleryItem);
+                } else if (video) {
+                    // Load video
+                    const dataSrc = video.getAttribute('data-src');
+                    if (dataSrc) {
+                        video.src = dataSrc;
+                        video.load();
+                        video.removeAttribute('data-src');
+                        // Try to play video
+                        video.play().catch(function(error) {
+                            console.log('Video autoplay prevented:', error);
+                        });
                     }
                     observer.unobserve(galleryItem);
                 }
@@ -190,7 +299,8 @@ document.addEventListener('DOMContentLoaded', function() {
     for (let i = preloadCount; i < allGalleryItems.length; i++) {
         const galleryItem = allGalleryItems[i];
         const img = galleryItem.querySelector('img[data-src]');
-        if (img) {
+        const video = galleryItem.querySelector('video[data-src]');
+        if (img || video) {
             imageObserver.observe(galleryItem);
         }
     }

@@ -99,6 +99,12 @@
     backface-visibility: hidden;
 }
 
+.gallery-item video {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 /* Rotate first two images to fix tilted orientation */
 .gallery-item:nth-child(1) img,
 .gallery-item:nth-child(2) img {
@@ -117,7 +123,8 @@
 }
 
 .gallery-item img.loaded,
-.gallery-item video.loaded {
+.gallery-item video.loaded,
+.gallery-item video {
     opacity: 1;
 }
 

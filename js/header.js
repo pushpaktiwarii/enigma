@@ -9,23 +9,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeMenu = document.getElementById('closeMenu');
     const headerLogo = document.querySelector('.header-logo');
 
-    // Logo click to refresh page
+    // Logo click to go to home page
     if (headerLogo) {
         headerLogo.style.cursor = 'pointer';
-        headerLogo.setAttribute('title', 'Click to refresh page');
+        headerLogo.setAttribute('title', 'Go to Home Page');
         headerLogo.addEventListener('click', function(e) {
             e.preventDefault();
-            // Force refresh with cache bypass
-            const currentPath = window.location.pathname;
-            const isIndex = currentPath === '/' || currentPath === '/index.html' || currentPath.endsWith('/');
-            
-            if (isIndex) {
-                // For index page, go to index.html with refresh param
-                window.location.href = 'index.html?refresh=' + Date.now();
-            } else {
-                // For other pages, refresh current page with cache bypass
-                window.location.href = currentPath + (currentPath.includes('?') ? '&' : '?') + 'refresh=' + Date.now();
-            }
+            // Navigate to home page
+            window.location.href = 'index.html';
         });
     }
 

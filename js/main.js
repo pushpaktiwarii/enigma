@@ -36,38 +36,35 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Check connection speed and user preference
     function shouldLoadVideo() {
-        // Check if on mobile (save bandwidth)
-        if (window.innerWidth < 768) {
-            // Show poster image on mobile instead of video
-            if (heroVideo && heroVideo.poster) {
-                // Hide video element
-                heroVideo.style.display = 'none';
-                // Set poster as background on hero-background
-                if (heroBackground) {
-                    heroBackground.style.backgroundImage = `url(${heroVideo.poster})`;
-                    heroBackground.style.backgroundSize = 'cover';
-                    heroBackground.style.backgroundPosition = 'center';
-                    heroBackground.style.backgroundRepeat = 'no-repeat';
-                }
-            }
-            return false; // Don't load video on mobile
-        }
-        
         // Check connection speed (if available)
         if ('connection' in navigator) {
             const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
             if (connection) {
-                // Don't load video on slow connections (2G, slow 3G)
+                // Don't load video on very slow connections (2G only)
                 if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
+                    // Show poster instead on very slow connections
+                    if (heroVideo && heroVideo.poster && heroBackground) {
+                        heroBackground.style.backgroundImage = `url(${heroVideo.poster})`;
+                        heroBackground.style.backgroundSize = 'cover';
+                        heroBackground.style.backgroundPosition = 'center';
+                        heroBackground.style.backgroundRepeat = 'no-repeat';
+                    }
                     return false;
                 }
-                // Save data mode
+                // Save data mode - show poster instead
                 if (connection.saveData) {
+                    if (heroVideo && heroVideo.poster && heroBackground) {
+                        heroBackground.style.backgroundImage = `url(${heroVideo.poster})`;
+                        heroBackground.style.backgroundSize = 'cover';
+                        heroBackground.style.backgroundPosition = 'center';
+                        heroBackground.style.backgroundRepeat = 'no-repeat';
+                    }
                     return false;
                 }
             }
         }
         
+        // Allow video on mobile and desktop
         return true;
     }
     
@@ -76,8 +73,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (videoLoadAttempted || !heroVideo) return;
         
         if (!shouldLoadVideo()) {
-            console.log('Skipping video load - mobile or slow connection');
-            // On mobile, ensure poster image is visible as background
+            console.log('Skipping video load - slow connection or data saver mode');
+            // Show poster image as background
             if (heroVideo && heroVideo.poster && heroBackground) {
                 // Preload poster image
                 const posterImg = new Image();
@@ -113,15 +110,44 @@ document.addEventListener('DOMContentLoaded', function() {
         heroVideo.src = videoSrc;
         heroVideo.load(); // Start loading
         
+        // Set video attributes for mobile compatibility
+        heroVideo.setAttribute('playsinline', '');
+        heroVideo.setAttribute('webkit-playsinline', '');
+        heroVideo.muted = true;
+        
         // Handle successful load
         heroVideo.addEventListener('loadeddata', function() {
             videoLoaded = true;
             console.log('Hero video loaded successfully');
-            heroVideo.play().catch(function(error) {
-                console.log('Video autoplay failed (normal on some browsers):', error);
-            });
-            if (fallback) {
-                fallback.classList.remove('show-fallback');
+            
+            // Try to play video
+            const playPromise = heroVideo.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(function() {
+                    // Video is playing
+                    console.log('Video is playing');
+                    if (fallback) {
+                        fallback.classList.remove('show-fallback');
+                    }
+                }).catch(function(error) {
+                    // Autoplay was prevented - this is normal on mobile
+                    console.log('Video autoplay prevented (user interaction may be required):', error);
+                    // Video will still be loaded, user can tap to play
+                    if (fallback) {
+                        fallback.classList.remove('show-fallback');
+                    }
+                });
+            }
+        }, { once: true });
+        
+        // Handle when video can start playing
+        heroVideo.addEventListener('canplay', function() {
+            // Try to play if not already playing
+            if (heroVideo.paused) {
+                heroVideo.play().catch(function(error) {
+                    console.log('Video play attempt:', error);
+                });
             }
         }, { once: true });
         
@@ -130,6 +156,13 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Video failed to load, showing fallback');
             if (fallback) {
                 fallback.classList.add('show-fallback');
+            }
+            // Show poster as background if video fails
+            if (heroVideo && heroVideo.poster && heroBackground) {
+                heroBackground.style.backgroundImage = `url(${heroVideo.poster})`;
+                heroBackground.style.backgroundSize = 'cover';
+                heroBackground.style.backgroundPosition = 'center';
+                heroBackground.style.backgroundRepeat = 'no-repeat';
             }
         }, { once: true });
     }
@@ -150,6 +183,33 @@ document.addEventListener('DOMContentLoaded', function() {
         const heroSection = document.querySelector('.hero-section');
         if (heroSection) {
             heroObserver.observe(heroSection);
+            
+            // Mobile: Allow user to tap to play video if autoplay is blocked
+            if (window.innerWidth < 768) {
+                let userInteracted = false;
+                
+                const startVideoOnInteraction = function() {
+                    if (!userInteracted && heroVideo && heroVideo.paused && videoLoaded) {
+                        userInteracted = true;
+                        heroVideo.play().catch(function(error) {
+                            console.log('User-initiated video play failed:', error);
+                        });
+                    }
+                };
+                
+                // Listen for touch/click events
+                heroSection.addEventListener('touchstart', startVideoOnInteraction, { once: true, passive: true });
+                heroSection.addEventListener('click', startVideoOnInteraction, { once: true });
+                
+                // Also try to play on scroll (some browsers allow this)
+                window.addEventListener('scroll', function() {
+                    if (!userInteracted && heroVideo && heroVideo.paused && videoLoaded) {
+                        heroVideo.play().catch(function() {
+                            // Ignore errors
+                        });
+                    }
+                }, { once: true, passive: true });
+            }
         }
         
         // Fallback: Load after 1 second if still not loaded (for fast connections)

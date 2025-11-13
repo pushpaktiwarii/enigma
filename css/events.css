@@ -113,25 +113,32 @@
         position: relative;
         overflow: hidden;
         min-height: 180px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
     }
 
-    /* All Events - Unique matching background images */
+    /* All Events - Using local images from assets/events grid/ */
     /* Literary Events */
     .event-card[data-event="open-mic"] .event-image {
         background-color: #1a1a1a;
         background-image: 
             linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
-            url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800&q=80');
+            url('../assets/grid/open mic.webp');
         background-size: cover, cover;
         background-position: center, center;
         background-repeat: no-repeat, no-repeat;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
     }
 
     .event-card[data-event="kbc-quiz"] .event-image {
         background-color: #1a1a1a;
         background-image: 
             linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
-            url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80');
+            url('../assets/grid/kbc.webp');
         background-size: cover, cover;
         background-position: center, center;
         background-repeat: no-repeat, no-repeat;
@@ -142,7 +149,7 @@
         background-color: #1a1a1a;
         background-image: 
             linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
-            url('https://images.unsplash.com/photo-1503095396549-807759245b35?w=800&q=80');
+            url('../assets/grid/dramatics.webp');
         background-size: cover, cover;
         background-position: center, center;
         background-repeat: no-repeat, no-repeat;
@@ -163,7 +170,7 @@
         background-color: #1a1a1a;
         background-image: 
             linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
-            url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80');
+            url('../assets/grid/power lifting.webp');
         background-size: cover, cover;
         background-position: center, center;
         background-repeat: no-repeat, no-repeat;
@@ -174,7 +181,7 @@
         background-color: #1a1a1a;
         background-image: 
             linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
-            url('https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=800&q=80');
+            url('../assets/grid/face painting.webp');
         background-size: cover, cover;
         background-position: center, center;
         background-repeat: no-repeat, no-repeat;
@@ -184,7 +191,7 @@
         background-color: #1a1a1a;
         background-image: 
             linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
-            url('https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80');
+            url('../assets/grid/canvas painting.webp');
         background-size: cover, cover;
         background-position: center, center;
         background-repeat: no-repeat, no-repeat;
@@ -194,7 +201,7 @@
         background-color: #1a1a1a;
         background-image: 
             linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
-            url('https://images.unsplash.com/photo-1606800053563-1c1c0a1a0a0a?w=800&q=80');
+            url('../assets/grid/mehndi.webp');
         background-size: cover, cover;
         background-position: center, center;
         background-repeat: no-repeat, no-repeat;
@@ -204,7 +211,7 @@
         background-color: #1a1a1a;
         background-image: 
             linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
-            url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80');
+            url('../assets/grid/rangoli.webp');
         background-size: cover, cover;
         background-position: center, center;
         background-repeat: no-repeat, no-repeat;
@@ -224,7 +231,7 @@
         background-color: #1a1a1a;
         background-image: 
             linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
-            url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&q=80');
+            url('../assets/grid/roadies.webp');
         background-size: cover, cover;
         background-position: center, center;
         background-repeat: no-repeat, no-repeat;
@@ -234,7 +241,7 @@
         background-color: #1a1a1a;
         background-image: 
             linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
-            url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80');
+            url('../assets/grid/treasure hunt.webp');
         background-size: cover, cover;
         background-position: center, center;
         background-repeat: no-repeat, no-repeat;
@@ -261,6 +268,8 @@
         background-repeat: no-repeat, no-repeat;
     }
 
+    .event-card[data-event="free-fire"] .event-image,
+    .event-card[data-event="bgmi"] .event-image,
     .event-card[data-event="gamers-arena"] .event-image {
         background-color: #1a1a1a;
         background-image: 
@@ -276,7 +285,7 @@
         background-color: #1a1a1a;
         background-image: 
             linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
-            url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80');
+            url('../assets/grid/fashion show.webp');
         background-size: cover, cover;
         background-position: center, center;
         background-repeat: no-repeat, no-repeat;
@@ -287,7 +296,7 @@
         background-color: #1a1a1a;
         background-image: 
             linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
-            url('https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&q=80');
+            url('../assets/grid/dance.webp');
         background-size: cover, cover;
         background-position: center, center;
         background-repeat: no-repeat, no-repeat;
@@ -319,7 +328,7 @@
         background-color: #1a1a1a;
         background-image: 
             linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
-            url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80');
+            url('../assets/grid/shark tank.webp');
         background-size: cover, cover;
         background-position: center, center;
         background-repeat: no-repeat, no-repeat;

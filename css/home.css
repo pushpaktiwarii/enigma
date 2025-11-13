@@ -36,7 +36,7 @@
     display: block;
 }
 
-/* Mobile: Show poster as background when video doesn't load */
+/* Mobile: Ensure video displays properly */
 @media (max-width: 768px) {
     .hero-background {
         background-size: cover;
@@ -44,9 +44,12 @@
         background-repeat: no-repeat;
     }
     
-    /* Use poster attribute as background on mobile */
+    /* Show video on mobile */
     .hero-video {
-        display: none;
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
     
     /* Ensure hero section has a background even before JS loads */
