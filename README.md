@@ -88,7 +88,7 @@ ENIGMA/
 
 ## 📧 Contact
 
-- **Email**: ugienigma@united.edu.in
+- **Email**: contact@ugienigma.org
 - **Instagram**: [@enigmafest_25](https://www.instagram.com/enigmafest_25/)
 - **Address**: 8WV8+Q4H, Nevada Samogar, dairy, United Naini, Naini, Prayagraj, Uttar Pradesh 211010
 

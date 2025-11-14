@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="theme-color" content="#0A0A0A">
-    <title>ENIGMA XIII - Annual Cultural Festival</title>
+    <title>ENIGMA – The Pulse of UGI</title>
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/logo/ENIGMA!_20251018_152032_0000.png">
@@ -43,9 +43,8 @@
         .header{position:fixed;top:0;left:0;width:100%;z-index:300;transition:transform .3s ease}
         .skip-to-main{position:absolute;left:-9999px;z-index:9999}
         .skip-to-main:focus{left:50%;top:20px;transform:translateX(-50%);padding:10px 20px;background:#00FFFF;color:#000;text-decoration:none;border-radius:4px}
-        /* Mobile hero background - fallback if video doesn't load */
+        /* Mobile hero video - no background image */
         @media (max-width:768px){
-            .hero-background{background-image:url('assets/enigma xii/1000079694.webp');background-size:cover;background-position:center;background-repeat:no-repeat}
             .hero-video{display:block;width:100%;height:100%;object-fit:cover}
         }
     </style>
@@ -111,9 +110,9 @@
                     webkit-playsinline
                     autoplay
                     preload="auto"
-                    data-src="assets/video/1000079681.mp4"
-                    poster="assets/enigma xii/1000079694.webp">
-                    <!-- Video will be loaded only when needed -->
+                    src="assets/video/1000079681.mp4"
+                    loading="eager">
+                    <!-- Video loads immediately on page load -->
                 </video>
                 <div class="hero-overlay"></div>
             </div>
@@ -558,7 +557,7 @@
                         <p>8WV8+Q4H, Nevada Samogar,dairy,United Naini, Naini, Prayagraj, Uttar Pradesh 211010
 </p>
                         <p><strong>Email:</strong></p>
-                        <p>ugienigma@united.edu.in</p>
+                        <p>contact@ugienigma.org</p>
                     </div>
                 </div>
             </div>
