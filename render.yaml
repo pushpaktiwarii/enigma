@@ -1,0 +1,34 @@
+# Render.com Deployment Configuration
+# Place this file in the root directory
+
+services:
+  - type: web
+    name: enigma-backend
+    env: node
+    region: oregon  # or: frankfurt, singapore, mumbai
+    plan: free  # or: starter, standard, pro
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      # Add other environment variables in Render Dashboard
+      # RAZORPAY_KEY_ID
+      # RAZORPAY_KEY_SECRET
+      # FIREBASE_PROJECT_ID
+      # FIREBASE_PRIVATE_KEY
+      # etc.
+
+
+
+
+
+
+
+
+
+
+

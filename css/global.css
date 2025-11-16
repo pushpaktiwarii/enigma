@@ -52,46 +52,9 @@
     box-sizing: border-box;
 }
 
-/* GPU acceleration for transforms */
-*,
-*::before,
-*::after {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-/* Optimize rendering */
-img, video {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* Mobile image optimization */
-@media (max-width: 768px) {
-    img {
-        max-width: 100%;
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-        image-rendering: -webkit-optimize-contrast;
-        image-rendering: crisp-edges;
-        display: block;
-    }
-    
-    /* Prevent image overflow on mobile */
-    .container img,
-    section img {
-        max-width: 100%;
-        width: auto;
-    }
-}
-
 html {
     scroll-behavior: smooth;
     font-size: 16px;
-    -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%;
 }
 
 body {
@@ -103,9 +66,6 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-tap-highlight-color: transparent;
-    text-rendering: optimizeLegibility;
-    -webkit-font-feature-settings: "kern" 1;
-    font-feature-settings: "kern" 1;
 }
 
 /* Touch-friendly buttons on mobile */
@@ -155,6 +115,7 @@ img {
     /* Performance optimizations */
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
+    will-change: contents;
 }
 
 a {
@@ -290,13 +251,12 @@ a:hover {
    Responsive Typography
    ============================================ */
 
-/* Container Responsive - Optimized */
+/* Container Responsive */
 .container {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 var(--spacing-md);
-    contain: layout style;
 }
 
 @media (max-width: 992px) {

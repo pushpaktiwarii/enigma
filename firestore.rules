@@ -1,0 +1,63 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ============================================
+    // Registrations Collection Rules
+    // ============================================
+    match /registrations/{registrationId} {
+      
+      // READ: Allow read only if user's email matches the document email
+      // Requires Firebase Authentication
+      allow read: if request.auth != null && 
+                     request.auth.token.email == resource.data.email;
+      
+      // Alternative READ (without Firebase Auth - less secure):
+      // Allow read if email query parameter matches document email
+      // Uncomment below and comment above if not using Firebase Auth
+      // allow read: if request.query.email == resource.data.email;
+      
+      // DELETE: Deny all deletes - no exceptions
+      allow delete: if false;
+      
+      // CREATE: Only allow from backend (service account)
+      // Service account requests have request.auth == null
+      // Only allow payment_status = "paid" from service account
+      allow create: if request.auth == null && 
+                       request.resource.data.payment_status == 'paid' &&
+                       isValidRegistrationData(request.resource.data);
+      
+      // UPDATE: Only allow updating payment_status to "paid" from backend
+      // Cannot change payment_id, order_id, or email
+      allow update: if request.auth == null && 
+                       request.resource.data.payment_status == 'paid' &&
+                       resource.data.payment_status != 'paid' &&
+                       request.resource.data.payment_id == resource.data.payment_id &&
+                       request.resource.data.order_id == resource.data.order_id &&
+                       request.resource.data.email == resource.data.email;
+      
+      // Helper function to validate registration data structure
+      function isValidRegistrationData(data) {
+        return data.keys().hasAll(['name', 'email', 'amount', 'payment_id', 'order_id', 'payment_status', 'createdAt']) &&
+               data.name is string &&
+               data.email is string &&
+               data.amount is number &&
+               data.payment_id is string &&
+               data.payment_id.size() > 0 &&
+               data.order_id is string &&
+               data.order_id.size() > 0 &&
+               data.payment_status is string &&
+               data.payment_status == 'paid' &&
+               data.createdAt is timestamp;
+      }
+    }
+    
+    // ============================================
+    // Deny all other collections by default
+    // ============================================
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
+

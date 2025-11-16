@@ -2,9 +2,8 @@
 // Advanced Animations & Effects
 // ============================================
 
-// Intersection Observer for Fade/Slide-In animations - Optimized
+// Intersection Observer for Fade/Slide-In animations
 document.addEventListener('DOMContentLoaded', function() {
-    // Use passive observer for better performance
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -14,8 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
-                // Unobserve after animation to improve performance
-                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
