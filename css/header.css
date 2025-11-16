@@ -9,8 +9,13 @@
     width: 100%;
     z-index: var(--z-fixed);
     padding: var(--spacing-md) 0;
-    transition: background-color var(--transition-normal), backdrop-filter var(--transition-normal);
+    transition: background-color var(--transition-normal), backdrop-filter var(--transition-normal), transform var(--transition-normal);
     background-color: transparent;
+    transform: translateY(0);
+}
+
+.header.header-hidden {
+    transform: translateY(-100%);
 }
 
 .header.scrolled {
@@ -37,15 +42,24 @@
     flex-shrink: 0;
     cursor: pointer;
     transition: transform var(--transition-fast), opacity var(--transition-fast);
+    text-decoration: none;
+    color: inherit;
 }
 
 .header-logo:hover {
     transform: scale(1.05);
     opacity: 0.9;
+    text-decoration: none;
 }
 
 .header-logo:active {
     transform: scale(0.98);
+}
+
+.header-logo:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 4px;
+    border-radius: var(--radius-sm);
 }
 
 .enigma-logo-img {

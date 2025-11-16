@@ -1,132 +1,358 @@
-/* ============================================
-   Events Page Styles
-   ============================================ */
+    /* ============================================
+    Events Page Styles
+    ============================================ */
 
-.events-page {
-    background-color: var(--color-bg);
-    min-height: 100vh;
+    .events-page {
+        background-color: var(--color-bg);
+        min-height: 100vh;
+    }
+
+    .page-title {
+        text-align: center;
+        margin-bottom: var(--spacing-xl);
+        font-size: clamp(2.5rem, 5vw, 4rem);
+    }
+
+    /* Filter Buttons */
+    .event-filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-sm);
+        justify-content: center;
+        margin-bottom: var(--spacing-xl);
+        padding: var(--spacing-md);
+        background-color: var(--color-surface);
+        border-radius: var(--radius-lg);
+    }
+
+    .filter-btn {
+        padding: var(--spacing-xs) var(--spacing-md);
+        background-color: transparent;
+        border: 2px solid var(--color-text-secondary);
+        color: var(--color-text-secondary);
+        border-radius: var(--radius-md);
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all var(--transition-fast);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .filter-btn:hover {
+        border-color: var(--color-primary);
+        color: var(--color-primary);
+        transform: translateY(-2px);
+    }
+
+    .filter-btn.active {
+        background-color: var(--color-primary);
+        border-color: var(--color-primary);
+        color: var(--color-bg);
+    }
+
+    /* Events Grid */
+    .events-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: var(--spacing-lg);
+    }
+
+    .event-card {
+        background-color: var(--color-surface);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        transition: transform 0.2s ease;
+        display: block;
+    }
+
+    .event-card.visible {
+        display: block;
+    }
+
+    .event-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .event-image {
+        width: 100%;
+        height: 180px;
+        overflow: hidden;
+        position: relative;
+        border-radius: 12px;
+        z-index: 0;
+    }
+
+    /* Remove category-based background images - using actual event images instead */
+    .event-image::after {
+        display: none;
+    }
+
+    /* Event overlay - similar to home page */
+    .event-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.3) 100%);
+        z-index: 1;
+        transition: background var(--transition-normal);
+        border-radius: 12px;
+        pointer-events: none;
+    }
+
+    .event-card:hover .event-overlay {
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.2) 100%);
+    }
+
+    /* Event images - using CSS backgrounds for online events */
+    .event-image {
+        background: #1a1a1a;
+        position: relative;
+        overflow: hidden;
+        min-height: 180px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+
+    /* All Events - Using local images from assets/events grid/ */
+    /* Literary Events */
+    .event-card[data-event="open-mic"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('../assets/grid/open mic.webp');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+
+    .event-card[data-event="kbc-quiz"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('../assets/grid/kbc.webp');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    /* Theatre Events */
+    .event-card[data-event="dramatics"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('../assets/grid/dramatics.webp');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    /* Sports Events */
+    .event-card[data-event="chess"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    .event-card[data-event="power-lifting"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('../assets/grid/power lifting.webp');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    /* Creative Events */
+    .event-card[data-event="face-painting"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('../assets/grid/face painting.webp');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    .event-card[data-event="canvas-painting"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('../assets/grid/canvas painting.webp');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    .event-card[data-event="mehndi-art"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('../assets/grid/mehndi.webp');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    .event-card[data-event="rangoli"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('../assets/grid/rangoli.webp');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    .event-card[data-event="mandala-art"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('https://images.unsplash.com/photo-1578301978018-3005759f48f7?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    .event-card[data-event="roadies"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('../assets/grid/roadies.webp');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    .event-card[data-event="treasure-hunt"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('../assets/grid/treasure hunt.webp');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    /* Online Events */
+    .event-card[data-event="bug-brawl"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.08) 0%, rgba(255, 0, 255, 0.08) 100%),
+            url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    .event-card[data-event="web-die"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.08) 0%, rgba(255, 0, 255, 0.08) 100%),
+            url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    .event-card[data-event="free-fire"] .event-image,
+    .event-card[data-event="bgmi"] .event-image,
+    .event-card[data-event="gamers-arena"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.08) 0%, rgba(255, 0, 255, 0.08) 100%),
+            url('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    /* Fashion Events */
+    .event-card[data-event="fashion-show"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('../assets/grid/fashion show.webp');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    /* Dance Events */
+    .event-card[data-event="dance"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('../assets/grid/dance.webp');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    /* Music Events */
+    .event-card[data-event="singing"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    .event-card[data-event="instrumental"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    /* Business Events */
+    .event-card[data-event="shark-tank"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('../assets/grid/shark tank.webp');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+    /* Photo & Film Events */
+    .event-card[data-event="framefest"] .event-image {
+        background-color: #1a1a1a;
+        background-image: 
+            linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%),
+            url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+    }
+
+/* Hover effect for online event images */
+.event-card[data-online="true"]:hover .event-image {
+    transform: scale(1.02);
+    filter: brightness(1.1);
 }
 
-.page-title {
-    text-align: center;
-    margin-bottom: var(--spacing-xl);
-    font-size: clamp(2.5rem, 5vw, 4rem);
-}
-
-/* Filter Buttons */
-.event-filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-sm);
-    justify-content: center;
-    margin-bottom: var(--spacing-xl);
-    padding: var(--spacing-md);
-    background-color: var(--color-surface);
-    border-radius: var(--radius-lg);
-}
-
-.filter-btn {
-    padding: var(--spacing-xs) var(--spacing-md);
-    background-color: transparent;
-    border: 2px solid var(--color-text-secondary);
-    color: var(--color-text-secondary);
-    border-radius: var(--radius-md);
-    font-family: var(--font-heading);
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all var(--transition-fast);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.filter-btn:hover {
-    border-color: var(--color-primary);
-    color: var(--color-primary);
-    transform: translateY(-2px);
-}
-
-.filter-btn.active {
-    background-color: var(--color-primary);
-    border-color: var(--color-primary);
-    color: var(--color-bg);
-}
-
-/* Events Grid */
-.events-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: var(--spacing-lg);
-}
-
-.event-card {
-    background-color: var(--color-surface);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    transition: transform 0.2s ease;
-    display: block;
-}
-
-.event-card.visible {
-    display: block;
-}
-
-.event-card:hover {
-    transform: translateY(-5px);
-}
-
-.event-image {
-    width: 100%;
-    height: 180px;
-    overflow: hidden;
-    position: relative;
-    border-radius: 12px;
-    z-index: 0;
-}
-
-/* Remove category-based background images - using actual event images instead */
-.event-image::after {
-    display: none;
-}
-
-/* Event overlay - similar to home page */
-.event-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%);
-    z-index: 1;
-    transition: background var(--transition-normal);
-    mix-blend-mode: multiply;
-    border-radius: 12px;
-}
-
-.event-card:hover .event-overlay {
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 100%);
-}
-
-/* Event images - using actual images from HTML instead of category backgrounds */
-.event-image {
-    background: #1a1a1a;
-}
-
-
-/* Show actual event images */
-.event-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    border-radius: 12px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.event-image img.loaded,
-.event-image img[src]:not([src=""]) {
-    opacity: 1;
+.event-card[data-online="true"] .event-image {
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 
@@ -163,6 +389,10 @@
 
 .event-mode.offline {
     background-color: #4CAF50;
+}
+
+.event-mode.online {
+    background-color: #2196F3;
 }
 
 .event-fee {

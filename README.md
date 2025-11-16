@@ -2,11 +2,11 @@
 
 A modern, responsive website for ENIGMA XIII, the annual cultural festival of United Group of Institutions, Prayagraj.
 
-##  About
+## 🎉 About
 
 ENIGMA XIII is the official cultural festival website showcasing events, gallery, sponsors, and registration for the festival scheduled on **November 21-22, 2025**.
 
-##  Features
+## ✨ Features
 
 - **Modern UI/UX Design** - Beautiful animations and effects
 - **Responsive Design** - Works seamlessly across all devices (mobile, tablet, desktop)
@@ -58,20 +58,20 @@ ENIGMA/
     └── video/               # Hero section video
 ```
 
-##  Getting Started
+## 🚀 Getting Started
 
 1. **Clone or Download** the repository
 2. **Open** `index.html` in a web browser
 3. **No build process required** - Pure HTML, CSS, and JavaScript
 
-##  Responsive Breakpoints
+## 📱 Responsive Breakpoints
 
 - **Mobile**: < 480px
 - **Tablet**: 481px - 768px
 - **Desktop**: 769px - 992px
 - **Large Desktop**: > 992px
 
-##  Color Scheme
+## 🎨 Color Scheme
 
 - **Primary**: Cyan (#00FFFF)
 - **Secondary**: Magenta (#FF00FF)
@@ -80,26 +80,34 @@ ENIGMA/
 - **Text Primary**: White (#FFFFFF)
 - **Text Secondary**: Light Gray (#AAAAAA)
 
-##  Event Information
+## 📝 Event Information
 
 - **Festival Dates**: November 21-22, 2025
 - **Registration Fee**: ₹300 for two event participation
 - **Mode**: All events are offline (except gaming events)
 
-##  Contact
+## 📧 Contact
 
-- **Email**: enigmaugi@united.edu.in
+- **Email**: contact@ugienigma.org
 - **Instagram**: [@enigmafest_25](https://www.instagram.com/enigmafest_25/)
 - **Address**: 8WV8+Q4H, Nevada Samogar, dairy, United Naini, Naini, Prayagraj, Uttar Pradesh 211010
 
-##  Development Team
+## 👨‍💻 Development Team
 
 **Made by** [Pushpak Tiwari](https://github.com/pushpaktiwarii), [Prashant Pandey](https://github.com/prashantucer), [Prashant Maurya](https://github.com/prashantmauryaa) with team
 
-## ☕ Buy me a Coffee!
+## ☕ Support the Developers
+
+### 💳 Payment QR Code
+
+Scan the QR code below to make a payment:
 
 ![Payment QR Code](assets/qr/payment-qr.png)
 
+**How to use:**
+1. Open your UPI app (PhonePe, Google Pay, Paytm, etc.)
+2. Scan the QR code above
+3. Enter the amount and confirm payment
 
 ## 📄 License
 
