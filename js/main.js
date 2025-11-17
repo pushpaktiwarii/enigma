@@ -14,8 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.preventDefault();
                 const target = document.querySelector(href);
                 if (target) {
-                    const header = document.querySelector('.header');
-                    const headerHeight = header ? header.offsetHeight : 0;
+                    const headerHeight = document.querySelector('.header').offsetHeight;
                     const targetPosition = target.offsetTop - headerHeight;
                     
                     window.scrollTo({
@@ -27,64 +26,45 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Hero Video - Loads immediately and plays fast
+    // Video error handling
     const heroVideo = document.querySelector('.hero-video');
     const fallback = document.querySelector('.hero-fallback');
     
     if (heroVideo) {
-        // Video is already set with src attribute for immediate loading
-        // Ensure it plays as soon as it can
-        heroVideo.addEventListener('canplay', function() {
-            // Try to play immediately when ready
-            if (heroVideo.paused) {
-                heroVideo.play().catch(function(error) {
-                    // Autoplay prevented - normal on some browsers
-                    console.log('Video autoplay prevented:', error);
-                });
-            }
-        }, { once: true });
-        
-        // Handle successful load
+        // Check if video can load
         heroVideo.addEventListener('loadeddata', function() {
-            console.log('Hero video loaded successfully');
-            // Try to play
-            heroVideo.play().catch(function(error) {
-                console.log('Video play:', error);
-            });
-        }, { once: true });
+            console.log('Video loaded successfully');
+            // Ensure fallback is hidden
+            if (fallback) {
+                fallback.classList.remove('show-fallback');
+            }
+        });
         
-        // Handle load error
+        // Handle video load error
         heroVideo.addEventListener('error', function(e) {
-            console.log('Video failed to load');
+            console.log('Video failed to load, showing fallback image');
             if (fallback) {
                 fallback.classList.add('show-fallback');
             }
-        }, { once: true });
-    }
-    
-    // Video loads immediately via src attribute - no observer needed
-    // Additional play attempts for better compatibility
-    if (heroVideo) {
-        const heroSection = document.querySelector('.hero-section');
-        if (heroSection) {
-            // Mobile: Allow user interaction to play video if autoplay is blocked
-            if (window.innerWidth < 768) {
-                let userInteracted = false;
-                
-                const startVideoOnInteraction = function() {
-                    if (!userInteracted && heroVideo && heroVideo.paused) {
-                        userInteracted = true;
-                        heroVideo.play().catch(function(error) {
-                            console.log('User-initiated video play failed:', error);
-                        });
-                    }
-                };
-                
-                // Listen for touch/click events on mobile
-                heroSection.addEventListener('touchstart', startVideoOnInteraction, { once: true, passive: true });
-                heroSection.addEventListener('click', startVideoOnInteraction, { once: true });
+        });
+        
+        // Try to play video
+        heroVideo.play().catch(function(error) {
+            console.log('Video autoplay failed (this is normal on some browsers):', error);
+            // Don't show fallback just because autoplay failed
+            // Video will still be visible, just not playing automatically
+        });
+        
+        // Check if video source exists after a delay
+        setTimeout(function() {
+            if (heroVideo.readyState === 0 && heroVideo.networkState === 3) {
+                // Video failed to load
+                console.log('Video source not found, showing fallback');
+                if (fallback) {
+                    fallback.classList.add('show-fallback');
+                }
             }
-        }
+        }, 2000);
     }
     
     // Keyboard navigation for mobile menu

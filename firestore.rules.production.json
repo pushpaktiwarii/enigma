@@ -1,0 +1,29 @@
+{
+  "rules": {
+    "rules_version": "2",
+    "service cloud.firestore": {
+      "match /databases/{database}/documents": {
+        "match /registrations/{registrationId}": {
+          "allow read": "request.auth != null && request.auth.token.email == resource.data.email",
+          "allow delete": "false",
+          "allow create": "request.resource.data.keys().hasAll(['name', 'email', 'amount', 'payment_id', 'order_id', 'payment_status', 'createdAt']) && request.resource.data.name is string && request.resource.data.email is string && request.resource.data.amount is number && request.resource.data.payment_id is string && request.resource.data.order_id is string && request.resource.data.payment_status is string && request.resource.data.createdAt is timestamp && (request.auth == null || request.resource.data.payment_status == 'paid')",
+          "allow update": "request.auth == null && request.resource.data.payment_status == 'paid' && resource.data.payment_status != 'paid' && request.resource.data.payment_id == resource.data.payment_id && request.resource.data.order_id == resource.data.order_id && request.resource.data.email == resource.data.email"
+        },
+        "match /{document=**}": {
+          "allow read, write": "false"
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+

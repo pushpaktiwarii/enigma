@@ -2,46 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="theme-color" content="#0A0A0A">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Event Detail - ENIGMA XIII</title>
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/logo/ENIGMA!_20251018_152032_0000.png">
     <link rel="shortcut icon" type="image/png" href="assets/logo/ENIGMA!_20251018_152032_0000.png">
     <link rel="apple-touch-icon" href="assets/logo/ENIGMA!_20251018_152032_0000.png">
-    
-    <!-- Resource Hints for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    
-    <!-- Fonts with optimized loading -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
-    
-    <!-- Critical CSS -->
-    <style>
-        body{background:#0A0A0A;color:#fff;font-family:'Lato',sans-serif;margin:0;padding:0}
-        .header{position:fixed;top:0;left:0;width:100%;z-index:300;transition:transform .3s ease}
-    </style>
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/global.css" media="all">
-    <link rel="stylesheet" href="css/header.css" media="all">
-    <link rel="stylesheet" href="css/footer.css" media="all">
-    <link rel="stylesheet" href="css/event-detail.css" media="all">
-    <link rel="stylesheet" href="css/animations.css" media="all">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/event-detail.css">
+    <link rel="stylesheet" href="css/animations.css">
 </head>
 <body>
     <a href="#main-content" class="skip-to-main">Skip to Main Content</a>
 
     <header class="header" id="header">
         <div class="header-container">
-            <a href="index.html" class="header-logo" aria-label="Go to Home Page">
+            <div class="header-logo">
                 <img src="assets/logo/ENIGMA!_20251018_152032_0000.png" alt="ENIGMA XIII Logo" class="enigma-logo-img">
-            </a>
+            </div>
             <nav>
                 <ul class="nav-menu">
                     <li><a href="index.html">Home</a></li>
@@ -85,9 +72,6 @@
                                 <p><strong>Registration Fee:</strong> <span id="eventFee">₹300</span> for two event participation</p>
                             </div>
                             <a href="registration.html" class="btn btn-primary btn-large">REGISTER NOW</a>
-                            <div class="instagram-note">
-                                <p>For more guidelines & updates, visit our <a href="https://www.instagram.com/enigmafest_25/" target="_blank" rel="noopener noreferrer" class="instagram-text-link">Instagram page</a>.</p>
-                            </div>
                         </div>
                     </div>
 
@@ -104,22 +88,32 @@
                             </ul>
                         </div>
 
-
                         <div class="content-section fade-in">
-                            <h2>Prize Pool</h2>
-                            <p><strong>Total Prize Pool: ₹1,50,000 (1.5 Lakhs)</strong></p>
-                            <p>Exciting cash prizes await the winners across all events. Compete and win your share of the prize pool!</p>
+                            <h2>Judging Criteria</h2>
+                            <ul id="judgingList">
+                                <li>Creativity and Originality: 30%</li>
+                                <li>Technical Skill: 25%</li>
+                                <li>Presentation: 20%</li>
+                                <li>Audience Engagement: 15%</li>
+                                <li>Overall Impact: 10%</li>
+                            </ul>
                         </div>
 
                         <div class="content-section fade-in">
-                            <h2>Contact Coordinators</h2>
-                            <p>You can contact the coordinators live for any queries or assistance regarding this event.</p>
-                            <div class="coordinators-grid" id="coordinatorsGrid">
+                            <h2>Prizes Upto: ₹XX,XXX</h2>
+                            <p>Winners will be awarded cash prizes and certificates. The prize distribution will take place during the closing ceremony.</p>
+                        </div>
+
+                        <div class="content-section fade-in">
+                            <h2>Meet The Coordinators</h2>
+                            <div class="coordinators-grid">
                                 <div class="coordinator-card">
+                                    <img src="assets/team/coordinator1.jpg" alt="Coordinator" loading="lazy" decoding="async">
                                     <h3>Coordinator Name</h3>
                                     <p>+91-XXXXXXXXXX</p>
                                 </div>
                                 <div class="coordinator-card">
+                                    <img src="assets/team/coordinator2.jpg" alt="Coordinator" loading="lazy" decoding="async">
                                     <h3>Coordinator Name</h3>
                                     <p>+91-XXXXXXXXXX</p>
                                 </div>
@@ -185,15 +179,15 @@
                     <h4>Contact Us</h4>
                     <div class="contact-info">
                         <p><strong>Contact Names & Numbers:</strong></p>
-                        <p><strong>UCER:</strong> Himanshu Mishra</p>
-                        <p>+91 89601 94225</p>
-                        <p><strong>UIT:</strong> Prakhar Agrahari</p>
-                        <p>+91 96160 62606</p>
+                        <p>XXX: +91-XXXXXXXXXX</p>
+                        <p>XXX: +91-XXXXXXXXXX</p>
+                        <p>XXX: +91-XXXXXXXXXX</p>
+                        <p>XXX: +91-XXXXXXXXXX</p>
                         <p><strong>Address:</strong></p>
                         <p>8WV8+Q4H, Nevada Samogar,dairy,United Naini, Naini, Prayagraj, Uttar Pradesh 211010
 </p>
                         <p><strong>Email:</strong></p>
-                        <p>contact@ugienigma.org</p>
+                        <p>enigma@united.edu.in</p>
                     </div>
                 </div>
             </div>
@@ -205,11 +199,11 @@
     </footer>
 
 
-    <script src="js/header.js" defer></script>
-    <script src="js/animations.js" defer></script>
-    <script src="js/event-detail.js" defer></script>
-    <script src="js/main.js" defer></script>
-    <script src="js/version-check.js" defer></script>
+    <script src="js/header.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/event-detail.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/version-check.js"></script>
 </body>
 </html>
 

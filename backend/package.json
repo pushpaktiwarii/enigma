@@ -1,0 +1,29 @@
+{
+  "name": "enigma-backend",
+  "version": "1.0.0",
+  "description": "ENIGMA XIII Registration Backend with Razorpay",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "razorpay",
+    "payment",
+    "registration"
+  ],
+  "author": "ENIGMA XIII Team",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "razorpay": "^2.9.2",
+    "firebase-admin": "^12.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
+

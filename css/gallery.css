@@ -99,32 +99,8 @@
     backface-visibility: hidden;
 }
 
-.gallery-item video {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-/* Rotate first two images to fix tilted orientation */
-.gallery-item:nth-child(1) img,
-.gallery-item:nth-child(2) img {
-    transform: rotate(-90deg);
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Rotate last image to fix tilted orientation */
-.gallery-item:last-child img {
-    transform: rotate(-90deg);
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
 .gallery-item img.loaded,
-.gallery-item video.loaded,
-.gallery-item video {
+.gallery-item video.loaded {
     opacity: 1;
 }
 
